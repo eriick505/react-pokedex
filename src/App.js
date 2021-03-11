@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react'
+
+import { usePokemons } from './Context/Pokedex'
+
+import Header from './components/Header'
+import Pokedex from './components/Pokedex'
+import API from './api'
+
+import './App.css'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  const { pokemons, setPokemons } = usePokemons()
 
-export default App;
+  const fetchData = (_, index) => fetch(`${API}/${index + 1}`)
+    .then(response => response.json())
+
+  const fetchPokemonsPromises = () => Array(10).fill('').map(fetchData)
+
+  const getAllPokemons = async () => {
+    const allPokemons = await Promise.all(fetchPokemonsPromises())
+    setPokemons(allPokemons)
+  }
+
+  useEffect(() => {
+    getAllPokemons()
+  }, [])
+
+  return (
+    <>
+      <Header />
+      { pokemons.length && 
+        <Pokedex pokemonData={pokemons} /> }
+    </>
+  )
+}
+export default App
