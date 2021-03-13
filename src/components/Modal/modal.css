@@ -1,5 +1,5 @@
 /******* POPUP *******/
-.popup {
+.modal {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -11,7 +11,7 @@
 	display: block;
 }
 
-.popup__content {
+.modal__content {
 	background-image: url(../../assets/img/logo-pokemon.png);
 	background-position: top right;
 	background-repeat: no-repeat;
@@ -19,7 +19,7 @@
 	margin-top: 34px;
 }
 
-.popup__box {
+.modal__box {
 	border-radius: 14px;
 	box-shadow: 3px 3px 10px 1px rgb(3 3 3 / 40%);
 	color: #333;
@@ -31,7 +31,7 @@
 	transition: all .2s ease-in-out;
 }
 
-.popup__close {
+.modal__close {
 	background-color: #fff;
 	border-radius: 0 0 0 8px;
 	border: none;
@@ -48,34 +48,34 @@
 	width: 30px;
 }
 
-.popup__close:hover {
+.modal__close:hover {
 	background-color: rgb(204, 55, 55);
 	color: #fff;
 }
 
-.popup__header,
-.popup__body {
+.modal__header,
+.modal__body {
 	padding-right: 10px;
 	padding-left: 10px;
 }
 
 @media(min-width: 768px) {
-	.popup__header,
-	.popup__body {
+	.modal__header,
+	.modal__body {
 		padding-right: 14px;
 		padding-left: 14px;
 	}	
 }
 
-.popup__header {
+.modal__header {
 	position: relative;
 }
 
-.popup__header h2 {
+.modal__header h2 {
 	text-transform: capitalize;
 }
 
-.popup__header .pokeId {
+.modal__header .pokeId {
 	color: #0000003d;
 	font-size: 20px;
 	font-weight: 600;
@@ -84,11 +84,11 @@
 	top: 2px;
 }
 
-.popup__header .types {
+.modal__header .types {
 	display: flex;
 }
 
-.popup__header .types li {
+.modal__header .types li {
 	background-color: #fff;
 	border-radius: 18px;
 	padding: 2px 8px;
@@ -96,18 +96,18 @@
 	font-size: 14px;
 }
 
-.popup__header .types li:not(:last-child) {
+.modal__header .types li:not(:last-child) {
 	margin-right: 8px;
 }
 
-.popup__header img {
+.modal__header img {
 	height: auto;
 	max-width: 54%;
 	display: block;
 	margin: 0 auto;
 }
 
-.popup__body {
+.modal__body {
 	background-color: #fff;
 	margin-top: -48px;
 	border-radius: 28px 28px 0 0;
@@ -115,110 +115,9 @@
 	padding-bottom: 22px;
 }
 
-.popup__body .menu {
-	display: flex;
-	justify-content: center;
-	width: 100%;
-	margin-bottom: 18px;
-}
-
-.popup__body .menu li {
-	padding: 4px 8px;
-	margin: 0 4px;
-	cursor: pointer;
-	color: rgba(51, 51, 51, 0.582);
-}
-
-.popup__body .menu li.active {
-	color: #222;
-	border-bottom: 2px solid #333;
-}
-
-.popup__body table {
+.modal__body table {
 	width: 100%;
 }
-
-
-/******* TABLES *******/
-.tables {
-	text-align: right;
-}
-
-.tables tr {
-	display: flex;
-	justify-content: space-around;
-}
-
-.tables tr:not(:last-child) {
-	margin-bottom: 8px;
-	text-transform: uppercase;
-}
-
-.tables tr td:first-child {
-	width: 32%;
-}
-
-.tables tr td:nth-child(2) {
-	width: 13%;
-	font-weight: 600;
-}
-
-.tables tr td:last-child {
-	width: 53%;
-}
-
-@media(min-width: 768px) {
-	.tables tr td:first-child {
-		width: 106px;
-		
-	}
-	
-	.tables tr td:nth-child(2) {
-		width: 50px;
-	}
-	
-	.tables tr td:last-child {
-		width: 257px;
-	}	
-}
-
-
-/******* SKILL BAR *******/
-.skillbar {
-	background-color: rgb(241, 241, 241);
-	height: 100%;
-	width: 100%;
-}
-
-.bar {
-	display: block;
-	height: 100%;
-}
-
-.hp {
-	background-color: #a7db8d;
-}
-
-.attack {
-	background-color: #ff5959;
-}
-
-.defense {
-	background-color: #9db7f5;
-}
-
-.special-attack {
-	background-color: #f39c12;
-}
-
-.special-defense {
-	background-color: #8395a7;
-}
-
-.speed {
-	background-color: #9b59b6;
-}
-
 
 .animateSlideDown {
 	animation-name: slideDown;

@@ -11,17 +11,17 @@ import './App.css'
 function App() {
   const { pokemons, setPokemons } = usePokemons()
 
-  const fetchData = (_, index) => fetch(`${API}/${index + 1}`)
+  useEffect(() => {
+    const fetchData = (_, index) => fetch(`${API}/${index + 1}`)
     .then(response => response.json())
 
-  const fetchPokemonsPromises = () => Array(10).fill('').map(fetchData)
+    const fetchPokemonsPromises = () => Array(10).fill('').map(fetchData)
 
-  const getAllPokemons = async () => {
-    const allPokemons = await Promise.all(fetchPokemonsPromises())
-    setPokemons(allPokemons)
-  }
+    const getAllPokemons = async () => {
+      const allPokemons = await Promise.all(fetchPokemonsPromises())
+      setPokemons(allPokemons)
+    }
 
-  useEffect(() => {
     getAllPokemons()
   }, [])
 

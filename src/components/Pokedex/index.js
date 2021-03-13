@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
+import './pokedex.css'
 import Card from '../Card'
 import Modal from '../Modal'
-import './pokedex.css'
 
 export default function Pokedex({ pokemonData }) {
   const [show, setShow] = useState(false)
@@ -35,7 +35,11 @@ export default function Pokedex({ pokemonData }) {
       </ul>
 
       { show && 
-        <Modal modalIsOpen={show} hideModal={hideModal} pokemon={pokemonClicked} /> }
+        <Modal 
+          modalIsOpen={show} 
+          hideModal={hideModal} 
+          pokemon={pokemonClicked} 
+        /> }
     </div>
   )
 }
