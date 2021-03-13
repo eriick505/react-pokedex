@@ -5,7 +5,7 @@ import { usePokemons } from '../../Context/Pokedex'
 import './searchBar.css'
 
 export default function SearchBar() {
-  const { pokemons, setPokemons } = usePokemons()
+  const { pokemons,  } = usePokemons()
 
   const handleChange = e => {
     const inputValue = e.target.value
