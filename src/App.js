@@ -23,7 +23,7 @@ function App() {
     }
 
     getAllPokemons()
-  }, [])
+  }, [setPokemons])
 
   return (
     <>

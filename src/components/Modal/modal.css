@@ -14,11 +14,12 @@
 }
 
 .modal__content {
-	background-image: url(../../assets/img/logo-pokemon.png);
+	background-image: url(../../assets/img/icon-logo-pokemon.png);
 	background-position: 110px -10px;
 	background-repeat: no-repeat;
 	background-size: 81%;
 	margin-top: 34px;
+	position: relative;
 }
 
 .modal__box {
@@ -162,6 +163,12 @@
 
 	to {
 		transform: translateY(0);
+	}
+}
+
+@keyframes rotating {
+	to {
+		transform: rotate(360deg);
 	}
 }
 

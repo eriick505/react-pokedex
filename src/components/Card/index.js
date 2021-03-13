@@ -13,14 +13,27 @@ const card = ({ pokemon, showModal, getPokemon }) => {
 
   return (
     <li className={"card " + (types[0])} onClick={() => handleCLick()}>
-      <img 
-        className="card-image" 
-        src={imgUrl} 
-        alt="nome pokemon" />
-      <h2 className="card-title">{pokemon.name}</h2>
-      <p className="card-subtitle">
-        {types.join(' | ')}
-      </p>
+      <div className="content">
+        <h2>{pokemon.name}</h2>
+        <ul className="types">
+          {types.map(type => (
+            <li key={type}>
+              {type}
+            </li>
+          ))}
+        </ul>
+        <span className="id">
+          #{pokemon.id}
+        </span>
+      </div>
+
+      <div className="thumb">
+        <img 
+          className="card-image" 
+          src={imgUrl} 
+          alt={pokemon.name}
+        />
+      </div>
     </li>
   )
 }
