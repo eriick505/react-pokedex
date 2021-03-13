@@ -7,6 +7,7 @@
 **/
 .statsInfo table {
 	text-align: right;
+	width: 100%;
 }
 
 .statsInfo table tr {

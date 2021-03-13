@@ -24,3 +24,21 @@
 .tabContent .item.active {
 	display: block;
 }
+
+.animateSlideRight {
+	animation-name: slideRight;
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
+}
+
+/***** ANIMATIONS *****/
+
+@keyframes slideRight {
+	from {
+		transform: translateX(-75vh);
+	}
+
+	to {
+		transform: translateX(0);
+	}
+}
