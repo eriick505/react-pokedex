@@ -23,6 +23,7 @@ const Modal = ({ modalIsOpen, hideModal, pokemon }) => {
         
         <div className="modal__content"> 
           <div className="modal__header">
+          <div className="bgRotate"></div>
             <h2>{name}</h2>
             <span className="pokeId">#{id}</span>
             <ul className="types">
