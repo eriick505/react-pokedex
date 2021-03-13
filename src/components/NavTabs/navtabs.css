@@ -16,3 +16,11 @@
 	color: #222;
 	border-bottom: 2px solid #333;
 }
+
+.tabContent .item {
+	display: none;
+}
+
+.tabContent .item.active {
+	display: block;
+}

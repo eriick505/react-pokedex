@@ -4,6 +4,9 @@ import './modal.css'
 import { pokemonTypesAsArray } from '../../utils'
 
 import NavTabs from '../NavTabs'
+import StatsInfo from './StatsInfo'
+import Moves from './Moves'
+import Evolutions from './Evolutions'
 
 const Modal = ({ modalIsOpen, hideModal, pokemon }) => {
   const showHideModal = modalIsOpen ? 'modal animateSlideDown' : ''
@@ -32,9 +35,9 @@ const Modal = ({ modalIsOpen, hideModal, pokemon }) => {
     
           <div className="modal__body">
             <NavTabs>
-              <div>oi</div>
-              <div>oi</div>
-              <div>oi</div>
+              <StatsInfo label="Stats" stats={stats} />
+              <Moves label="Moves" />
+              <Evolutions label="Evolutions" />
             </NavTabs>
           </div>
         </div>
