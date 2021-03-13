@@ -10,7 +10,7 @@ import Evolutions from './Evolutions'
 
 const Modal = ({ modalIsOpen, hideModal, pokemon }) => {
   const showHideModal = modalIsOpen ? 'modal animateSlideDown' : ''
-  const { id, name, stats } = pokemon
+  const { id, name, stats, moves } = pokemon
   const typesInfo = pokemonTypesAsArray(pokemon)
   const pokemonImg = `https://pokeres.bastionbot.org/images/pokemon/${id}.png`
 
@@ -36,7 +36,7 @@ const Modal = ({ modalIsOpen, hideModal, pokemon }) => {
           <div className="modal__body">
             <NavTabs>
               <StatsInfo label="Base Stats" stats={stats} />
-              <Moves label="Moves" />
+              <Moves label="Moves" moves={moves} color={typesInfo[0]} />
               <Evolutions label="Evolutions" />
             </NavTabs>
           </div>

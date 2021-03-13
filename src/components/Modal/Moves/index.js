@@ -1,10 +1,16 @@
 import React from 'react'
 
-const Moves = () => {
+import './moves.css'
+
+const Moves = ({ moves, color }) => {
   return (
-    <div>
-      MOVES
-    </div>
+    <ul className="movesList">
+      {moves.map(item => (
+        <li key={item.move.name} className={color}>
+          {item.move.name}
+        </li>
+      ))}
+    </ul>
   )
 }
 

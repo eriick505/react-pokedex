@@ -14,3 +14,65 @@ body {
 	margin: 0;
 	font-family: cursive;
 }
+
+
+/* POKEMON TYPE COLOR */
+.steel {
+	background-color: #f4f4f4;
+}
+
+.fire {
+	background-color: #fc6b6e;
+}
+
+.grass {
+	background-color: #68c725;
+}
+
+.electric {
+	background-color: #e8dd09;
+}
+
+.water, .ice {
+	background-color: #75bffc;
+}
+
+.ground {
+	background-color: #f4e7da;
+}
+
+.rock {
+	background-color: #d5d5d4;
+}
+
+.fairy {
+	background-color: #fceaff;
+}
+
+.poison {
+	background-color: #98d7a5;
+}
+
+.bug {
+	background-color: #f8d5a3;
+}
+
+.dragon {
+	background-color: #97b3e6;
+}
+
+.psychic {
+	background-color: #eaeda1;
+}
+
+.flying {
+	background-color: #F5F5F5;
+}
+
+.fighting {
+	background-color: #E6E0D4;
+}
+
+.normal {
+	background-color: #F5F5F5;
+}
