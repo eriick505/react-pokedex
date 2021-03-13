@@ -6,34 +6,31 @@ const StatsInfo = ({ stats }) => {
 	.reduce((acc, item) =>  acc + item , 0)
 
 	return (
-		<div className="statsInfo">
-			<table>
-					<tbody>
-						{ stats.map(({ base_stat, stat }, index) => {
-							const resumeName = stat.name.replace('special', 'sp')
-							
-							return ( 
-							<tr key={index}>
-								<td>{resumeName}</td>
-								<td>{base_stat}</td>
-								<td>
-									<div className="skillbar">
-											<span 
-											className={"bar " + (stat.name)} 
-											style={{width: `calc(100% * ${base_stat}/255)`}}>
-											</span>
-									</div>
-								</td>
-							</tr>
-							)
-						}) }
-						<tr>
-							<td>TOTAL</td>
-							<td>{getTotalStats}</td>
-							<td></td>
-						</tr>
-					</tbody>
-			</table>
+		<div className="baseStats">
+			{ stats.map(info => {
+				const { base_stat, stat } = info
+				const removeHyphen = stat.name.replace('-', ' ')
+
+				return (
+					<div key={stat.name} className="statItem">
+						<div className="info">
+							<span>{removeHyphen}</span>
+							<span>{base_stat}</span>
+						</div>
+						<div className="progress">
+							<span 
+								className={"bar " + (stat.name)} 
+								style={{width: `calc(100% * ${base_stat}/255)`}}>
+							</span>
+						</div>
+					</div>
+				)
+			}) }
+
+			<div className="total">
+				<span>Total</span>
+				<span>{getTotalStats}</span>
+			</div>
 		</div>
 	)
 }

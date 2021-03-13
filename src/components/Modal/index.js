@@ -35,7 +35,7 @@ const Modal = ({ modalIsOpen, hideModal, pokemon }) => {
     
           <div className="modal__body">
             <NavTabs>
-              <StatsInfo label="Stats" stats={stats} />
+              <StatsInfo label="Base Stats" stats={stats} />
               <Moves label="Moves" />
               <Evolutions label="Evolutions" />
             </NavTabs>

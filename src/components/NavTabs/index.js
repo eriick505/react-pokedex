@@ -32,7 +32,7 @@ const NavTabs = ({ children }) => {
 					return (
 						<div 
 							key={label}
-							className={"item " + (label === active ? 'active' : '')}>
+							className={"item " + (label === active ? 'active animateSlideRight' : '')}>
 							{one}
 						</div>
 					)
