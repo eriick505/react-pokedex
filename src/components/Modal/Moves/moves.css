@@ -1,0 +1,11 @@
+.movesList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.movesList li {
+  margin: 5px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  color: #fff;
+}
