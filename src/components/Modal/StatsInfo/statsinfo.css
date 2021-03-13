@@ -5,7 +5,7 @@
 **
 **
 **/
-.statsInfo table {
+/* .statsInfo table {
 	text-align: right;
 	width: 100%;
 }
@@ -46,13 +46,29 @@
 	.statsInfo table tr td:last-child {
 		width: 257px;
 	}	
+} */
+
+.baseStats {
+	width: 257px;
+	margin-left: auto;
+	margin: auto;
 }
 
-/******* SKILL BAR *******/
-.skillbar {
+.statItem:not(:last-child) {
+	margin-bottom: 10px;
+}
+
+.statItem .info {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 4px;
+	text-transform: capitalize;
+	font-size: 15px;
+}
+
+.statItem .progress {
 	background-color: rgb(241, 241, 241);
-	height: 100%;
-	width: 100%;
+	height: 5px;
 }
 
 .bar {
@@ -60,6 +76,14 @@
 	height: 100%;
 }
 
+.total {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 10px;
+}
+
+
+/* STATS NAME */
 .hp {
 	background-color: #a7db8d;
 }
