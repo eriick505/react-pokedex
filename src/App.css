@@ -38,23 +38,23 @@ body {
 }
 
 .ground {
-	background-color: #f4e7da;
+	background-color: #e2c36e;
 }
 
 .rock {
-	background-color: #d5d5d4;
+	background-color: #c8a048;
 }
 
 .fairy {
-	background-color: #fceaff;
+	background-color: #eda4ed;
 }
 
 .poison {
-	background-color: #98d7a5;
+	background-color: #934293;
 }
 
 .bug {
-	background-color: #f8d5a3;
+	background-color: #a8b821;
 }
 
 .dragon {
@@ -62,7 +62,7 @@ body {
 }
 
 .psychic {
-	background-color: #eaeda1;
+	background-color: #e43870;
 }
 
 .flying {
@@ -70,9 +70,13 @@ body {
 }
 
 .fighting {
-	background-color: #E6E0D4;
+	background-color: #ba2f27;
 }
 
 .normal {
-	background-color: #F5F5F5;
+	background-color: #a9a878;
+}
+
+.ghost {
+	background-color: #a5a0c0;
 }
