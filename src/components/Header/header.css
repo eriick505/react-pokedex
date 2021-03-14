@@ -2,9 +2,18 @@
 	align-items: center;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.534);
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	padding: 8px 15px;
 	transition: all .2s ease-in-out;
+	flex-direction: column;
+	text-align: center;
+}
+
+@media(min-width: 1025px) {
+	.header {
+		flex-direction: row;
+		justify-content: space-between;
+	}
 }
 
 .header .logo img {
@@ -13,5 +22,6 @@
 }
 
 .header .searchContainer {
-	width: 400px;
+	width: 100%;
+	max-width: 400px;
 }
