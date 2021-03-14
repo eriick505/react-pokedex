@@ -67,12 +67,13 @@ const getEvolutionChainsById = async (id) => {
 
     return evoChains
   }
-  
+
   return createObjectEvoChains(evochainsData)
 }
 
 export {
   API,
   getAllPokemons,
+  getPokemonSpeciesById,
   getEvolutionChainsById
 }
