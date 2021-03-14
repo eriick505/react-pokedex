@@ -9,7 +9,7 @@
 	background-repeat: no-repeat;
 	background-position: 103px 11%;
 	background-size: 83%;
-	transition: all .2s ease-in-out;
+	transition: transform .2s ease-in-out;
 }
 
 .card:hover {
