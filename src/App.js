@@ -5,7 +5,7 @@ import { usePokemons } from './Context/Pokedex'
 import Header from './components/Header'
 import Pokedex from './components/Pokedex'
 import Footer from './components/Footer'
-import { getAllPokemons, getAllEvolutionChains } from './api'
+import { getAllPokemons, getEvolutionChainsById } from './api'
 
 import './App.css'
 
@@ -18,7 +18,7 @@ function App() {
       setPokemons(allPokemons)
     }
     setPokemonsIntoPokedex()
-    getAllEvolutionChains()
+   
   }, [])
 
   return (
