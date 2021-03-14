@@ -22,7 +22,6 @@ export default function Pokedex({ pokemonData }) {
 
   return (
     <div className="container">
-      <h1>Pokedex</h1>
       <ul data-js="pokedex" className="pokedex">
         {pokemonData.map(item => (
           <Card 

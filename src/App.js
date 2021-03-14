@@ -4,6 +4,7 @@ import { usePokemons } from './Context/Pokedex'
 
 import Header from './components/Header'
 import Pokedex from './components/Pokedex'
+import Footer from './components/Footer'
 import API from './api'
 
 import './App.css'
@@ -15,7 +16,7 @@ function App() {
     const fetchData = (_, index) => fetch(`${API}/${index + 1}`)
     .then(response => response.json())
 
-    const fetchPokemonsPromises = () => Array(151).fill('').map(fetchData)
+    const fetchPokemonsPromises = () => Array(9).fill('').map(fetchData)
 
     const getAllPokemons = async () => {
       const allPokemons = await Promise.all(fetchPokemonsPromises())
@@ -30,6 +31,7 @@ function App() {
       <Header />
       { pokemons.length && 
         <Pokedex pokemonData={pokemons} /> }
+      <Footer /> 
     </>
   )
 }

@@ -2,11 +2,18 @@ import React from 'react'
 
 import SearchBar from '../SearchBar'
 import './header.css'
+import logoPokemon from '../../assets/img/pokemon.png'
 
 export default function Header() {
   return (
-    <header className="searchContainer">
-      <SearchBar />
+    <header className="header">
+      <div className="logo">
+        <img src={logoPokemon} alt="logo" />
+      </div>
+
+      <div className="searchContainer">
+        <SearchBar />
+      </div>
     </header>
   )
 }
