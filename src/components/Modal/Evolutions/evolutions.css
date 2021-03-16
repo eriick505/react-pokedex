@@ -1,3 +1,22 @@
 .evolutionBox {
   color: #111;
 }
+
+.evolutionBox ul {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.evolutionBox ul li {
+  text-align: center;
+  text-transform: capitalize;
+  flex: 0 0 50%;
+}
+
+.evolutionBox ul li img {
+  max-width: 20%;
+  height: auto;
+}
+
+

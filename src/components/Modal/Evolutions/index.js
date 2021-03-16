@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
 import './evolutions.css'
+import { usePokemons } from '../../../Context/Pokedex'
 import { getEvolutionChainsById } from '../../../api'
 
 const Evolutions = ({ pokemonId }) => {
   const [evoChains, setEvoChains] = useState([])
+  const { pokemons, } = usePokemons()
 
   useEffect(() => {
     const evolutionChain = async () => {
@@ -12,28 +14,29 @@ const Evolutions = ({ pokemonId }) => {
       setEvoChains(data) 
     }
     evolutionChain()
-
-    const dividirArray = (base, max) => {
-      let result = []
-  
-      for (let i = 0; i < base.length; i = i+(max-1)) {
-        result.push(base.slice(i, (i+max)))
-      }
-      return result;
-    }
-  
-    console.log(dividirArray(evoChains, 2));
   }, [setEvoChains])
+
+  const getPokemonIdByName = (name) => {
+    const pokemonFiltered = pokemons.filter(pokemon => pokemon.name === name)
+    return pokemonFiltered[0].id
+  }
+
+  const imgUrl = name => 
+    `https://pokeres.bastionbot.org/images/pokemon/${getPokemonIdByName(name)}.png`
 
   return (
     <div className="evolutionBox">
       <h5>Evolution Chain</h5>
 
       <ul>
-        {evoChains.map(item => (
-          <li key={item.species_name}>
-            {item.species_name}
-            {item.min_level}
+        {evoChains.map(poke => (
+          <li key={poke.species_name}>
+            <img
+              src={imgUrl(poke.species_name)} 
+              alt={poke.species_name}
+            />
+            {poke.species_name} <br />
+            {poke.min_level}
           </li>
         ))}
       </ul>
