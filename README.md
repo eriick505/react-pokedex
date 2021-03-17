@@ -21,8 +21,8 @@
 <hr />
 
 <img alt="Home" src="./screenshots/home.jpg" />
-<img alt="Modal" src="./screenshots/modal1.jpg" />
-<img alt="Collection" src="./screenshots/collection.jpg" />
+<img alt="Modal" src="./screenshots/modal.jpg" />
+<img alt="Collection" src="./screenshots/collection.png" />
 
 <h3 id="funcionalidades">✅ Funcionalidades</h3>
 <hr />
