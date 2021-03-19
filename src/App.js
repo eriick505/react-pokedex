@@ -18,7 +18,7 @@ function App() {
       setPokemons(allPokemons)
     }
     setPokemonsIntoPokedex()
-   
+  
   }, [setPokemons])
 
   return (
