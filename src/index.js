@@ -4,10 +4,10 @@ import PokedexProvider from './Context/Pokedex'
 import App from './App';
 
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <PokedexProvider>
       <App />
-    </PokedexProvider>
-  </React.StrictMode>,
+    </PokedexProvider>,
+  // </React.StrictMode>,
   document.getElementById('root')
 );

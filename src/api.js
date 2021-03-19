@@ -71,9 +71,17 @@ const getEvolutionChainsById = async (id) => {
   return createObjectEvoChains(evochainsData)
 }
 
+const getPokemonByNameOrId = async nameOrId => {
+  if(nameOrId) {
+    const response = await fetch(`${API}/${nameOrId}`)
+    return await response.json()
+  }
+}
+
 export {
   API,
   getAllPokemons,
   getPokemonSpeciesById,
-  getEvolutionChainsById
+  getEvolutionChainsById,
+  getPokemonByNameOrId
 }
