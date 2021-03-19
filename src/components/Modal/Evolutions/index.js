@@ -26,7 +26,7 @@ const Evolutions = ({ pokemonId }) => {
 
   return (
     <div className="evolutionBox">
-      <h5>Evolution Chain</h5>
+      <h5>Evolution Chains</h5>
 
       <ul>
         {evoChains.map(poke => (
