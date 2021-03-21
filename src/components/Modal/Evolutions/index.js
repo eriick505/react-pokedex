@@ -6,6 +6,7 @@ import { getEvolutionChainsById, getPokemonByNameOrId } from '../../../api'
 
 const Evolutions = ({ pokemonId }) => {
   const [evoChains, setEvoChains] = useState([])
+  const [pokeImgId, setPokeImgId] = useState([])
   const { pokemons, } = usePokemons()
 
   useEffect(() => {
@@ -16,39 +17,39 @@ const Evolutions = ({ pokemonId }) => {
     evolutionChain()
   }, [setEvoChains])
 
-    const getIdByName = async (name) => {
-      const pokemonFiltered = pokemons.filter(pokemon => pokemon.name === name)
+  useEffect(() => {
+    const getPokemonID = async () => {
+      const pokemonId = evoChains.map(async chain => {
+        const pokemonFiltered = pokemons.filter(pokemon => 
+          pokemon.name === chain.species_name)
 
-      console.log(pokemonFiltered)
-  
-      if(!pokemonFiltered.length) {
-        const pokemonData = await getPokemonByNameOrId(name)
-        console.log('caçando');
-        console.log(pokemonData);
-      }
+        if(!pokemonFiltered.length) {
+          const pokemonData = await getPokemonByNameOrId(chain.species_name)
+          pokemonFiltered.push(pokemonData)
+        }
+
+        return pokemonFiltered[0].id
+      })
+
+      const allPromisesPokemon = await Promise.all(pokemonId)
+      setPokeImgId(allPromisesPokemon)
     }
-
-    // criar um estado para o pokemonfiltrado 
-    // adicionar o mode strict novamente
-    // adicionar que foi encontrado no fetch dentro do array de pokemons filtrados
-    // finalizar o bug
-
-
-  // const imgUrl = name => 
-  //   `https://pokeres.bastionbot.org/images/pokemon/${getIdByName(name)}.png`
+    getPokemonID()
+  }, [evoChains, pokemons])
+    
+  const imgUrl = id => `https://pokeres.bastionbot.org/images/pokemon/${id}.png`
 
   return (
     <div className="evolutionBox">
       <h5>Evolution Chains</h5>
 
       <ul>
-        {evoChains.map(poke => (
+        {evoChains.map((poke, index) => (
           <li key={poke.species_name}>
-            {console.log(getIdByName(poke.species_name))}
-            {/* <img
-              src={imgUrl(poke.species_name)} 
+            <img
+              src={imgUrl(pokeImgId[index])} 
               alt={poke.species_name}
-            /> */}
+            />
             {poke.species_name} <br />
             {poke.min_level}
           </li>
