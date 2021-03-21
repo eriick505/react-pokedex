@@ -2,7 +2,7 @@ import React from 'react'
 import { pokemonTypesAsArray } from '../../utils'
 import './card.css'
 
-const card = ({ pokemon, showModal, getPokemon }) => {
+const Card = ({ pokemon, showModal, getPokemon }) => {
   const handleCLick = () => {
     showModal()
     getPokemon(pokemon)
@@ -39,4 +39,4 @@ const card = ({ pokemon, showModal, getPokemon }) => {
 }
 
 
-export default card
+export default Card

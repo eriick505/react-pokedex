@@ -3,7 +3,7 @@ const API = 'https://pokeapi.co/api/v2/pokemon'
 const fetchData = (_, index) => fetch(`${API}/${index + 1}`)
   .then(response => response.json())
 
-const fetchPokemonsPromises = () => Array(25).fill('').map(fetchData)
+const fetchPokemonsPromises = () => Array(24).fill('').map(fetchData)
 
 const getAllPokemons = async () => {
   const allPokemons = await Promise.all(fetchPokemonsPromises())
@@ -71,9 +71,17 @@ const getEvolutionChainsById = async (id) => {
   return createObjectEvoChains(evochainsData)
 }
 
+const getPokemonByNameOrId = async nameOrId => {
+  if(nameOrId) {
+    const response = await fetch(`${API}/${nameOrId}`)
+    return await response.json()
+  }
+}
+
 export {
   API,
   getAllPokemons,
   getPokemonSpeciesById,
-  getEvolutionChainsById
+  getEvolutionChainsById,
+  getPokemonByNameOrId
 }
