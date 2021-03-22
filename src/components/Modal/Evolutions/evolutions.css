@@ -1,22 +1,60 @@
-.evolutionBox {
-  color: #111;
-}
-
-.evolutionBox ul {
+.evolutionList {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
 }
 
-.evolutionBox ul li {
+.evolutionItem {
+  align-items: center;
+  color: #111;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: flex-end;
+  position: relative;
   text-align: center;
   text-transform: capitalize;
-  flex: 0 0 50%;
 }
 
-.evolutionBox ul li img {
-  max-width: 20%;
+.evolutionBoxImg {
+  display: flex;
+  flex-direction: column;
+  height: 172px;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+  transition: width .2s ease-in-out;
+  align-items: center;
+}
+
+.evolutionBoxImg img {
+  max-width: 100%;
   height: auto;
+  margin-bottom: 4px;
 }
 
+.evolutionList li:nth-child(1) .evolutionBoxImg {
+  width: 45%;
+}
 
+.evolutionList li:nth-child(2) .evolutionBoxImg {
+  width: 65%;
+}
+
+.evolutionList li:nth-child(3) .evolutionBoxImg {
+  width: 85%;
+}
+
+.evolutionItem h5 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.evolutionItem .level {
+  border-radius: 24px;
+  color: #fff;
+  font-size: 13px;
+  padding: 2px 6px;
+  position: absolute;
+  bottom: -26px;
+  font-weight: 600;
+}

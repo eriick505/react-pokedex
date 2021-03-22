@@ -38,7 +38,10 @@ const Modal = ({ modalIsOpen, hideModal, pokemon }) => {
             <NavTabs>
               <StatsInfo label="Base Stats" stats={stats} />
               <Moves label="Moves" moves={moves} color={typesInfo[0]} />
-              <Evolutions label="Evolutions" pokemonId={id} />
+              <Evolutions 
+                label="Evolutions" 
+                pokemonId={id} 
+                color={typesInfo[0]} />
             </NavTabs>
           </div>
         </div>

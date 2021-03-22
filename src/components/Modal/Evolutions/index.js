@@ -4,7 +4,7 @@ import './evolutions.css'
 import { usePokemons } from '../../../Context/Pokedex'
 import { getEvolutionChainsById, getPokemonByNameOrId } from '../../../api'
 
-const Evolutions = ({ pokemonId }) => {
+const Evolutions = ({ pokemonId, color }) => {
   const [evoChains, setEvoChains] = useState([])
   const [pokeImgId, setPokeImgId] = useState([])
   const { pokemons, } = usePokemons()
@@ -40,18 +40,22 @@ const Evolutions = ({ pokemonId }) => {
   const imgUrl = id => `https://pokeres.bastionbot.org/images/pokemon/${id}.png`
 
   return (
-    <div className="evolutionBox">
-      <h5>Evolution Chains</h5>
-
-      <ul>
+    <div>
+      <ul className="evolutionList">
         {evoChains.map((poke, index) => (
-          <li key={poke.species_name}>
-            <img
-              src={imgUrl(pokeImgId[index])} 
-              alt={poke.species_name}
-            />
-            {poke.species_name} <br />
-            {poke.min_level}
+          <li key={poke.species_name} className="evolutionItem">
+            <div className="evolutionBoxImg">
+              <img
+                src={imgUrl(pokeImgId[index])} 
+                alt={poke.species_name}
+              />
+            </div>
+            <h5>{poke.species_name}</h5>
+            {poke.min_level && 
+              <span 
+                className={"level " + (color)}>
+                Lv. {poke.min_level}
+              </span>}
           </li>
         ))}
       </ul>
