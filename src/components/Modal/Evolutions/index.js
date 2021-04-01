@@ -66,17 +66,55 @@ const Evolutions = ({ pokemonId, color }) => {
           ))}
         </ul>
       ) : (
-        <>
-          {evoChains.map((poke, index) => {
-            if (index <= 4 && index !== 0) {
-              return <h5>{poke.species_name}</h5>;
-            }
+        <div className={styles.multipleEvolutionsList}>
+          <div className={styles.lineAbove}>
+            {evoChains
+              .filter((_, index) => index <= 4 && index !== 0)
+              .map((poke, index) => (
+                <div key={poke.species_name} className={styles.evolutionItem}>
+                  <div className={styles.evolutionBoxImg}>
+                    <img
+                      src={imgUrl(pokeImgId[index + 1])}
+                      alt={poke.species_name}
+                    />
+                  </div>
+                  {poke.species_name}
+                </div>
+              ))}
+          </div>
 
-            if (index === 0) {
-              return <h3>{poke.species_name}</h3>;
-            }
-          })}
-        </>
+          <div className={styles.mainPokemon}>
+            {evoChains
+              .filter((_, index) => index === 0)
+              .map((poke, index) => (
+                <div key={poke.species_name} className={styles.evolutionItem}>
+                  <div className={styles.evolutionBoxImg}>
+                    <img
+                      src={imgUrl(pokeImgId[index])}
+                      alt={poke.species_name}
+                    />
+                  </div>
+                  {poke.species_name}
+                </div>
+              ))}
+          </div>
+
+          <div className={styles.lineBelow}>
+            {evoChains
+              .filter((_, index) => index >= 5 && index !== 0)
+              .map((poke, index) => (
+                <div key={poke.species_name} className={styles.evolutionItem}>
+                  <div className={styles.evolutionBoxImg}>
+                    <img
+                      src={imgUrl(pokeImgId[index + 5])}
+                      alt={poke.species_name}
+                    />
+                  </div>
+                  {poke.species_name}{" "}
+                </div>
+              ))}
+          </div>
+        </div>
       )}
     </div>
   );

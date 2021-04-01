@@ -3,8 +3,7 @@
   text-align: center;
 }
 
-.evolutionList,
-.evolutionMultipleList {
+.evolutionList {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -64,4 +63,27 @@
   position: absolute;
   bottom: -26px;
   font-weight: 600;
+}
+
+.multipleEvolutionsList .lineAbove,
+.multipleEvolutionsList .mainPokemon,
+.multipleEvolutionsList .lineBelow {
+  display: flex;
+}
+
+.lineAbove .evolutionBoxImg,
+.mainPokemon .evolutionBoxImg,
+.lineBelow .evolutionBoxImg {
+  height: auto;
+}
+
+.lineAbove .evolutionBoxImg img,
+.mainPokemon .evolutionBoxImg img,
+.lineBelow .evolutionBoxImg img {
+  max-width: 60%;
+}
+
+.multipleEvolutionsList .mainPokemon {
+  width: 150px;
+  margin: 20px auto;
 }
