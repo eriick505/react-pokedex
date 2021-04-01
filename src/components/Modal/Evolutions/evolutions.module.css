@@ -1,6 +1,13 @@
-.evolutionList {
+.evoContainer {
+  color: #111;
+  text-align: center;
+}
+
+.evolutionList,
+.evolutionMultipleList {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .evolutionItem {
@@ -21,7 +28,7 @@
   height: 172px;
   justify-content: flex-end;
   margin-bottom: 8px;
-  transition: width .2s ease-in-out;
+  transition: width 0.2s ease-in-out;
   align-items: center;
 }
 
