@@ -1,5 +1,5 @@
 .movesList {
-  align-content: start;
+  align-content: flex-start;
   display: flex;
   flex-wrap: wrap;
   height: 260px;

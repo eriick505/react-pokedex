@@ -1,30 +1,35 @@
 const API = 'https://pokeapi.co/api/v2/pokemon'
 
-const fetchData = (_, index) => fetch(`${API}/${index + 1}`)
+const fetchData = (_, index) => fetch(`${API}/${index + 130}`)
   .then(response => response.json())
 
-const fetchPokemonsPromises = () => Array(26).fill('').map(fetchData)
+const fetchPokemonsPromises = () => Array(5).fill('').map(fetchData)
 
 const getAllPokemons = async () => {
   const allPokemons = await Promise.all(fetchPokemonsPromises())
   return allPokemons
 }
 
-const getPokemonSpeciesById = async (id) => {
-  const allPokemons = await getAllPokemons()
+// const getPokemonSpeciesById = async (id) => {
+//   const allPokemons = await getAllPokemons()
 
-  const allUrlSpecies = allPokemons.map(pokemon => pokemon.species.url)
+//   const allUrlSpecies = allPokemons.map(pokemon => pokemon.species.url)
 
-  const speciesPromises = allUrlSpecies.map(url => fetch(url)
-    .then(r => r.json()))
+//   const speciesPromises = allUrlSpecies.map(url => fetch(url)
+//     .then(r => r.json()))
 
-  const speciesData = await Promise.all(speciesPromises)
+//   const speciesData = await Promise.all(speciesPromises)
   
-  return speciesData[id - 1]
+//   return speciesData[id - 1]
+// }
+
+const getByIdPokemonSpecie = async (id) => {
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
+  return await response.json()
 }
 
 const getEvolutionChainsById = async (id) => {
-  const specieData = await getPokemonSpeciesById(id);
+  const specieData = await getByIdPokemonSpecie(id);
 
   const evolutionChainsUrl = specieData.evolution_chain.url
 
@@ -38,9 +43,10 @@ const getEvolutionChainsById = async (id) => {
   const createObjectEvoChains = (data) => {
     let evoChains = []
     let evoData = data.chain
+    let evolutionTo = evoData.evolves_to
 
     do {
-      let numberOfEvolutions = evoData.evolves_to.lenght
+      let numberOfEvolutions = evoData.evolves_to.length
       let evoDetails = evoData.evolution_details[0]
 
       evoChains.push({
@@ -51,20 +57,24 @@ const getEvolutionChainsById = async (id) => {
       })
 
       if(numberOfEvolutions > 1) {
-        for(let i = 1; i < numberOfEvolutions; i++){
-          evoChains.push({
-            "species_name": evoData.evolves_to[i].species.name,
-            "min_level": !evoData.evolves_to[i] ? 1 : evoData.evolves_to[i].min_level,
-            "trigger_name": !evoData.evolves_to[i] ? null : evoData.evolves_to[i].trigger_name,
-            "item": !evoData.evolves_to[i] ? null : evoData.evolves_to[i].item
-          })
-        }
+        evolutionTo.map((evo, index) => {
+          const {evolution_details, species} = evo
+
+          if(index !== 0) {
+            evoChains.push({
+              "species_name": !species ? null : species.name,
+              "min_level": !evolution_details.length ? 1 : evolution_details[0].min_level,
+              "item": !evolution_details.length ? null : evolution_details[0].item?.name 
+            })
+            return
+          }
+        })
       }
   
       evoData = evoData.evolves_to[0]
 
     } while(!!evoData && evoData.hasOwnProperty('evolves_to'))
-
+    console.log(evoChains);
     return evoChains
   }
 
@@ -81,7 +91,7 @@ const getPokemonByNameOrId = async nameOrId => {
 export {
   API,
   getAllPokemons,
-  getPokemonSpeciesById,
+  // getPokemonSpeciesById,
   getEvolutionChainsById,
   getPokemonByNameOrId
 }

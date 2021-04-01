@@ -15,7 +15,7 @@ const Evolutions = ({ pokemonId, color }) => {
       setEvoChains(data) 
     }
     evolutionChain()
-  }, [setEvoChains])
+  }, [setEvoChains, pokemonId])
 
   useEffect(() => {
     const getPokemonID = async () => {
@@ -33,6 +33,7 @@ const Evolutions = ({ pokemonId, color }) => {
 
       const allPromisesPokemon = await Promise.all(pokemonId)
       setPokeImgId(allPromisesPokemon)
+      
     }
     getPokemonID()
   }, [evoChains, pokemons])
@@ -59,7 +60,6 @@ const Evolutions = ({ pokemonId, color }) => {
           </li>
         ))}
       </ul>
-      
     </div>
   )
 }
