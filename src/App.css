@@ -32,9 +32,12 @@ body {
   background-color: #ceb502;
 }
 
-.water,
+.water {
+  background-color: #41a9ff;
+}
+
 .ice {
-  background-color: #75bffc;
+  background-color: #81bbea;
 }
 
 .ground {
@@ -79,4 +82,8 @@ body {
 
 .ghost {
   background-color: #a5a0c0;
+}
+
+.dark {
+  background-color: #252525;
 }
