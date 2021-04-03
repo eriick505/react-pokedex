@@ -1,7 +1,7 @@
 .evoContainer {
   color: #111;
   text-align: center;
-  padding-top: 40px;
+  padding-top: 10px;
 }
 
 .evoContainer::-webkit-scrollbar-track {
@@ -162,6 +162,7 @@
   top: -30px;
   background: #fff;
   border: none;
+  cursor: pointer;
 }
 
 .slideContainer button:first-child {
