@@ -98,12 +98,7 @@ const Evolutions = ({ pokemonId, color }) => {
               .filter((_, index) => index === 0)
               .map((poke, index) => (
                 <div key={poke.species_name}>
-                  <div>
-                    <img
-                      src={imgUrl(pokeImgId[index])}
-                      alt={poke.species_name}
-                    />
-                  </div>
+                  <img src={imgUrl(pokeImgId[index])} alt={poke.species_name} />
                   <h5>{poke.species_name}</h5>
                 </div>
               ))}
@@ -129,10 +124,10 @@ const Evolutions = ({ pokemonId, color }) => {
             </div>
             <nav className={styles.slideControl}>
               <button onClick={slidePrev}>
-                <Chevron width={20} height={30} left={true} />
+                <Chevron width={20} height={20} left={true} />
               </button>
               <button onClick={slideNext}>
-                <Chevron width={20} height={30} />
+                <Chevron width={20} height={20} />
               </button>
             </nav>
           </div>

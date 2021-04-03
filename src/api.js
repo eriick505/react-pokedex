@@ -1,27 +1,14 @@
 const API = "https://pokeapi.co/api/v2/pokemon";
 
 const fetchData = (_, index) =>
-  fetch(`${API}/${index + 118}`).then((response) => response.json());
+  fetch(`${API}/${index + 1}`).then((response) => response.json());
 
-const fetchPokemonsPromises = () => Array(20).fill("").map(fetchData);
+const fetchPokemonsPromises = () => Array(25).fill("").map(fetchData);
 
 const getAllPokemons = async () => {
   const allPokemons = await Promise.all(fetchPokemonsPromises());
   return allPokemons;
 };
-
-// const getPokemonSpeciesById = async (id) => {
-//   const allPokemons = await getAllPokemons()
-
-//   const allUrlSpecies = allPokemons.map(pokemon => pokemon.species.url)
-
-//   const speciesPromises = allUrlSpecies.map(url => fetch(url)
-//     .then(r => r.json()))
-
-//   const speciesData = await Promise.all(speciesPromises)
-
-//   return speciesData[id - 1]
-// }
 
 const getByIdPokemonSpecie = async (id) => {
   const response = await fetch(
@@ -93,10 +80,4 @@ const getPokemonByNameOrId = async (nameOrId) => {
   }
 };
 
-export {
-  API,
-  getAllPokemons,
-  // getPokemonSpeciesById,
-  getEvolutionChainsById,
-  getPokemonByNameOrId,
-};
+export { API, getAllPokemons, getEvolutionChainsById, getPokemonByNameOrId };
