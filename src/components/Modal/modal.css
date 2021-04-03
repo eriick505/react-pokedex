@@ -1,22 +1,32 @@
 /******* POPUP *******/
 .modal {
+  background-color: rgba(34, 34, 34, 0.589);
+  display: block;
+  height: 100%;
+  left: 0;
+  padding: 10px;
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  background-color: rgba(34, 34, 34, 0.589);
   z-index: 100;
-  padding: 10px;
-  display: block;
 }
 
 .modal__content {
-  background-image: url(../../assets/img/icon-logo-pokemon.png);
-  background-position: 110px -10px;
+  height: 100%;
+}
+
+.overlay {
+  width: 420px;
+  height: 420px;
+  background-image: url(../../assets/img/icon-logo-pokemon2.png);
+  background-position: center;
   background-repeat: no-repeat;
-  background-size: 81%;
-  position: relative;
+  background-size: 100%;
+  animation: rotating 10s linear infinite;
+  z-index: 0;
+  position: absolute;
+  top: 4px;
+  right: -18px;
 }
 
 .modal__box {
@@ -25,10 +35,10 @@
   color: #fff;
   margin: 0 auto;
   max-width: 480px;
-  position: relative;
-  width: 100%;
   overflow: hidden;
+  position: relative;
   transition: all 0.2s ease-in-out;
+  width: 100%;
 }
 
 @media (max-width: 1366px) {
@@ -52,7 +62,7 @@
   text-align: center;
   top: 0;
   width: 30px;
-  z-index: 1;
+  z-index: 10;
 }
 
 .modal__close:hover {
@@ -62,27 +72,28 @@
 
 .modal__header,
 .modal__body {
-  padding-right: 10px;
   padding-left: 10px;
+  padding-right: 10px;
 }
 
 @media (min-width: 768px) {
   .modal__header,
   .modal__body {
-    padding-right: 14px;
     padding-left: 14px;
+    padding-right: 14px;
   }
 }
 
 .modal__header {
-  position: relative;
   padding-top: 32px;
+  position: relative;
+  z-index: 2;
 }
 
 .modal__header h2 {
-  text-transform: capitalize;
-  margin-top: 0;
   margin-bottom: 20px;
+  margin-top: 0;
+  text-transform: capitalize;
 }
 
 .modal__header .pokeId {
@@ -91,6 +102,7 @@
   font-weight: 600;
   position: absolute;
   right: 20px;
+  text-shadow: 2px 2px 7px rgb(3 3 3 / 16%);
   top: 34px;
 }
 
@@ -101,10 +113,10 @@
 .modal__header .types li {
   background-color: #fff;
   border-radius: 18px;
-  padding: 2px 8px;
   box-shadow: 2px 2px 6px 0 rgba(3, 3, 3, 0.12);
-  font-size: 14px;
   color: #111;
+  font-size: 14px;
+  padding: 2px 8px;
 }
 
 .modal__header .types li:not(:last-child) {
@@ -112,35 +124,30 @@
 }
 
 .modal__header img {
-  height: auto;
-  max-width: 54%;
   display: block;
+  height: auto;
   margin: -24px auto 0 auto;
+  max-width: 54%;
 }
 
 .modal__body {
   background-color: #fff;
-  margin-top: -48px;
   border-radius: 28px 28px 0 0;
-  padding-top: 48px;
+  height: 100%;
+  margin-top: -48px;
   padding-bottom: 22px;
+  padding-top: 48px;
+  z-index: 1;
+  position: relative;
 }
 
 .modal__body .tabContent .item {
-  width: 100%;
   height: 264px;
+  width: 100%;
 }
 
 .animateSlideDown {
-  animation-name: slideDown;
-  animation-duration: 0.3s;
-  animation-fill-mode: forwards;
-}
-
-.animateLargeToSmall {
-  animation: largeToSmall;
-  animation-duration: 0.3s;
-  animation-fill-mode: forwards;
+  animation: slideDown 0.3s forwards;
 }
 
 /***** ANIMATIONS *****/
@@ -174,31 +181,5 @@
 @keyframes rotating {
   to {
     transform: rotate(360deg);
-  }
-}
-
-@keyframes largeToSmall {
-  0% {
-    transform: scale(1);
-  }
-
-  20% {
-    transform: scale(0.8);
-  }
-
-  40% {
-    transform: scale(0.6);
-  }
-
-  60% {
-    transform: scale(0.4);
-  }
-
-  80% {
-    transform: scale(0.2);
-  }
-
-  100% {
-    transform: scale(0);
   }
 }
