@@ -1,8 +1,9 @@
 .movesList {
+  align-content: flex-start;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   height: 260px;
+  justify-content: space-between;
   overflow-y: scroll;
 }
 

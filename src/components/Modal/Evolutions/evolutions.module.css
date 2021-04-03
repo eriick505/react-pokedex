@@ -1,0 +1,173 @@
+.evoContainer {
+  color: #111;
+  text-align: center;
+  padding-top: 40px;
+}
+
+.evoContainer::-webkit-scrollbar-track {
+  background-color: #f4f4f4;
+}
+.evoContainer::-webkit-scrollbar {
+  width: 4px;
+  background: #f4f4f4;
+}
+.evoContainer::-webkit-scrollbar-thumb {
+  background: #dad7d7;
+}
+
+.evoContainer h5 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.evolutionList {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.evolutionItem {
+  align-items: center;
+  color: #111;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: flex-end;
+  position: relative;
+  text-align: center;
+}
+
+.evolutionItem:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 72%;
+  top: 25px;
+  display: inline-block;
+  margin-right: 10px;
+  width: 40%;
+  height: 48px;
+  background: url("../../../assets/img/arrow-right.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.evolutionBoxImg {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+  transition: width 0.2s ease-in-out;
+  align-items: center;
+}
+
+.evolutionBoxImg img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 4px;
+}
+
+.evolutionList li:nth-child(1) .evolutionBoxImg {
+  width: 45%;
+}
+
+.evolutionList li:nth-child(2) .evolutionBoxImg {
+  width: 65%;
+}
+
+.evolutionList li:nth-child(3) .evolutionBoxImg {
+  width: 85%;
+}
+
+.evolutionItem .level {
+  border-radius: 24px;
+  color: #fff;
+  font-size: 13px;
+  padding: 2px 6px;
+  position: absolute;
+  bottom: -26px;
+  font-weight: 600;
+}
+
+/* 
+  MULTIPLE EVOLUTIONS  
+*/
+.multipleEvolutions {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.multipleEvolutions h5 {
+  margin: 10px 0 0;
+}
+
+.mainPokemon {
+  position: relative;
+}
+
+.mainPokemon::after {
+  content: "";
+  position: absolute;
+  left: 72%;
+  top: 25px;
+  display: inline-block;
+  margin-right: 10px;
+  width: 40%;
+  height: 48px;
+  background: url("../../../assets/img/arrow-right.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.mainPokemon img {
+  max-width: 64%;
+}
+
+/* SLIDE  */
+.slideContainer {
+  overflow: hidden;
+}
+
+.slideContainer .content {
+  display: flex;
+  transition: transform 0.2s ease-in-out;
+}
+
+.slideContainer .item {
+  width: 80%;
+  flex-shrink: 0;
+  margin: 0 10%;
+}
+
+.slideContainer .item img {
+  max-width: 80%;
+  height: auto;
+}
+
+.slideControl {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem auto;
+  width: 80%;
+  position: relative;
+}
+
+.slideControl button {
+  position: absolute;
+  top: -30px;
+  background: #fff;
+  border: none;
+}
+
+.slideContainer button:first-child {
+  left: 0;
+}
+
+.slideContainer button:last-child {
+  right: 0;
+}

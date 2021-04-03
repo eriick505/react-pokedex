@@ -17,7 +17,7 @@ body {
 
 /* POKEMON TYPE COLOR */
 .steel {
-  background-color: #949494;
+  background-color: #f4f4f4;
 }
 
 .fire {
@@ -29,7 +29,7 @@ body {
 }
 
 .electric {
-  background-color: #e8dd09;
+  background-color: #ceb502;
 }
 
 .water,
@@ -79,8 +79,4 @@ body {
 
 .ghost {
   background-color: #a5a0c0;
-}
-
-.dark {
-  background-color: #111111;
 }

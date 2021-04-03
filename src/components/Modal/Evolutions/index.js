@@ -1,13 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from "react";
 
-import './evolutions.css';
-import { usePokemons } from '../../../Context/Pokedex';
-import { getEvolutionChainsById, getPokemonByNameOrId } from '../../../api';
+import styles from "./evolutions.module.css";
+import { usePokemons } from "../../../Context/Pokedex";
+import { getEvolutionChainsById, getPokemonByNameOrId } from "../../../api";
+import Chevron from "../../Svg/Chevron";
 
-const Evolutions = ({ pokemonId }) => {
+const Evolutions = ({ pokemonId, color }) => {
   const [evoChains, setEvoChains] = useState([]);
   const [pokeImgId, setPokeImgId] = useState([]);
+  const [slideActive, setSlideActive] = useState(0);
+  const [positionSlide, setPositionSlide] = useState(0);
+
+  const contentRef = useRef();
   const { pokemons } = usePokemons();
+
+  useEffect(() => {
+    if (contentRef.current) {
+      const { width } = contentRef.current.getBoundingClientRect();
+      setPositionSlide(-(width * slideActive));
+    }
+  }, [slideActive]);
+
+  function slidePrev() {
+    const isActiveGreaterThanZero = slideActive > 0;
+
+    if (isActiveGreaterThanZero) setSlideActive(slideActive - 1);
+  }
+
+  function slideNext() {
+    if (evoChains.length) {
+      const isActiveMinorThanTotalItems = slideActive < evoChains.length - 2;
+
+      if (isActiveMinorThanTotalItems) setSlideActive(slideActive + 1);
+    }
+  }
 
   useEffect(() => {
     const evolutionChain = async () => {
@@ -19,9 +45,9 @@ const Evolutions = ({ pokemonId }) => {
 
   useEffect(() => {
     const getPokemonID = async () => {
-      const pokemonId = evoChains.map(async chain => {
+      const pokemonId = evoChains.map(async (chain) => {
         const pokemonFiltered = pokemons.filter(
-          pokemon => pokemon.name === chain.species_name
+          (pokemon) => pokemon.name === chain.species_name
         );
 
         if (!pokemonFiltered.length) {
@@ -38,22 +64,75 @@ const Evolutions = ({ pokemonId }) => {
     getPokemonID();
   }, [evoChains, pokemons]);
 
-  const imgUrl = id =>
+  const imgUrl = (id) =>
     `https://pokeres.bastionbot.org/images/pokemon/${id}.png`;
 
+  if (evoChains.length <= 1)
+    return (
+      <div className={styles.evoContainer}>
+        <p>Este pokemon não possui evoluções 😔</p>
+      </div>
+    );
   return (
-    <div className="evolutionBox">
-      <h5>Evolution Chains</h5>
+    <div className={styles.evoContainer}>
+      {evoChains.length <= 3 ? (
+        <ul className={styles.evolutionList}>
+          {evoChains.map((poke, index) => (
+            <li key={poke.species_name} className={styles.evolutionItem}>
+              <div className={styles.evolutionBoxImg}>
+                <img src={imgUrl(pokeImgId[index])} alt={poke.species_name} />
+              </div>
+              <h5>{poke.species_name}</h5>
+              {poke.min_level && (
+                <span className={`${styles.level} ${color}`}>
+                  Lv. {poke.min_level}
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div className={styles.multipleEvolutions}>
+          <div className={styles.mainPokemon}>
+            {evoChains
+              .filter((_, index) => index === 0)
+              .map((poke, index) => (
+                <div key={poke.species_name}>
+                  <img src={imgUrl(pokeImgId[index])} alt={poke.species_name} />
+                  <h5>{poke.species_name}</h5>
+                </div>
+              ))}
+          </div>
 
-      <ul>
-        {evoChains.map((poke, index) => (
-          <li key={poke.species_name}>
-            <img src={imgUrl(pokeImgId[index])} alt={poke.species_name} />
-            {poke.species_name} <br />
-            {poke.min_level}
-          </li>
-        ))}
-      </ul>
+          <div className={styles.slideContainer}>
+            <div
+              ref={contentRef}
+              className={styles.content}
+              style={{ transform: `translateX(${positionSlide}px)` }}
+            >
+              {evoChains
+                .filter((_, index) => index !== 0)
+                .map((poke, index) => (
+                  <div key={poke.species_name} className={styles.item}>
+                    <img
+                      src={imgUrl(pokeImgId[index + 1])}
+                      alt={poke.species_name}
+                    />
+                    <h5>{poke.species_name}</h5>
+                  </div>
+                ))}
+            </div>
+            <nav className={styles.slideControl}>
+              <button onClick={slidePrev}>
+                <Chevron width={20} height={20} left={true} />
+              </button>
+              <button onClick={slideNext}>
+                <Chevron width={20} height={20} />
+              </button>
+            </nav>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
