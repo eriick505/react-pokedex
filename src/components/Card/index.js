@@ -3,16 +3,35 @@ import { pokemonTypesAsArray } from "../../utils";
 import "./card.css";
 
 const Card = ({ pokemon, showModal, getPokemon }) => {
-  const handleCLick = () => {
+  const [loading, setLoading] = React.useState(false);
+  const [image, setImage] = React.useState(null);
+
+  function handleClick() {
     showModal();
     getPokemon(pokemon);
-  };
+  }
 
   const types = pokemonTypesAsArray(pokemon);
-  const imgUrl = `https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`;
+
+  React.useEffect(() => {
+    (async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(
+          `https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`
+        );
+        if (!response.ok) throw new Error("Imagem não carregada");
+        setImage(response.url);
+      } catch (e) {
+        console.log(e.message);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [pokemon.id]);
 
   return (
-    <li className={"card " + types[0]} onClick={() => handleCLick()}>
+    <li className={"card " + types[0]} onClick={() => handleClick()}>
       <div className="content">
         <h2>{pokemon.name}</h2>
         <ul className="types">
@@ -23,7 +42,11 @@ const Card = ({ pokemon, showModal, getPokemon }) => {
         <span className="id">#{pokemon.id}</span>
       </div>
       <div className="thumb">
-        <img className="card-image" src={imgUrl} alt={pokemon.name} />
+        {loading ? (
+          "carregando"
+        ) : (
+          <img className="card-image" src={image} alt={pokemon.name} />
+        )}
       </div>
     </li>
   );
