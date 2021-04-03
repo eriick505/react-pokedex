@@ -1,13 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import styles from "./evolutions.module.css";
 import { usePokemons } from "../../../Context/Pokedex";
 import { getEvolutionChainsById, getPokemonByNameOrId } from "../../../api";
+import Chevron from "../../Svg/Chevron";
 
 const Evolutions = ({ pokemonId, color }) => {
   const [evoChains, setEvoChains] = useState([]);
   const [pokeImgId, setPokeImgId] = useState([]);
+  const [slideActive, setSlideActive] = useState(0);
+  const [positionSlide, setPositionSlide] = useState(0);
+
+  const contentRef = useRef();
   const { pokemons } = usePokemons();
+
+  useEffect(() => {
+    if (contentRef.current) {
+      const { width } = contentRef.current.getBoundingClientRect();
+      setPositionSlide(-(width * slideActive));
+    }
+  }, [slideActive]);
+
+  function slidePrev() {
+    const isActiveGreaterThanZero = slideActive > 0;
+
+    if (isActiveGreaterThanZero) setSlideActive(slideActive - 1);
+  }
+
+  function slideNext() {
+    if (evoChains.length) {
+      const isActiveMinorThanTotalItems = slideActive < evoChains.length - 2;
+
+      if (isActiveMinorThanTotalItems) setSlideActive(slideActive + 1);
+    }
+  }
 
   useEffect(() => {
     const evolutionChain = async () => {
@@ -66,53 +92,49 @@ const Evolutions = ({ pokemonId, color }) => {
           ))}
         </ul>
       ) : (
-        <div className={styles.multipleEvolutionsList}>
-          <div className={styles.lineAbove}>
-            {evoChains
-              .filter((_, index) => index <= 4 && index !== 0)
-              .map((poke, index) => (
-                <div key={poke.species_name} className={styles.evolutionItem}>
-                  <div className={styles.evolutionBoxImg}>
-                    <img
-                      src={imgUrl(pokeImgId[index + 1])}
-                      alt={poke.species_name}
-                    />
-                  </div>
-                  {poke.species_name}
-                </div>
-              ))}
-          </div>
-
+        <div className={styles.multipleEvolutions}>
           <div className={styles.mainPokemon}>
             {evoChains
               .filter((_, index) => index === 0)
               .map((poke, index) => (
-                <div key={poke.species_name} className={styles.evolutionItem}>
-                  <div className={styles.evolutionBoxImg}>
+                <div key={poke.species_name}>
+                  <div>
                     <img
                       src={imgUrl(pokeImgId[index])}
                       alt={poke.species_name}
                     />
                   </div>
-                  {poke.species_name}
+                  <h5>{poke.species_name}</h5>
                 </div>
               ))}
           </div>
 
-          <div className={styles.lineBelow}>
-            {evoChains
-              .filter((_, index) => index >= 5 && index !== 0)
-              .map((poke, index) => (
-                <div key={poke.species_name} className={styles.evolutionItem}>
-                  <div className={styles.evolutionBoxImg}>
+          <div className={styles.slideContainer}>
+            <div
+              ref={contentRef}
+              className={styles.content}
+              style={{ transform: `translateX(${positionSlide}px)` }}
+            >
+              {evoChains
+                .filter((_, index) => index !== 0)
+                .map((poke, index) => (
+                  <div key={poke.species_name} className={styles.item}>
                     <img
-                      src={imgUrl(pokeImgId[index + 5])}
+                      src={imgUrl(pokeImgId[index + 1])}
                       alt={poke.species_name}
                     />
+                    <h5>{poke.species_name}</h5>
                   </div>
-                  {poke.species_name}{" "}
-                </div>
-              ))}
+                ))}
+            </div>
+            <nav className={styles.slideControl}>
+              <button onClick={slidePrev}>
+                <Chevron width={20} height={30} left={true} />
+              </button>
+              <button onClick={slideNext}>
+                <Chevron width={20} height={30} />
+              </button>
+            </nav>
           </div>
         </div>
       )}

@@ -1,9 +1,9 @@
 const API = "https://pokeapi.co/api/v2/pokemon";
 
 const fetchData = (_, index) =>
-  fetch(`${API}/${index + 120}`).then((response) => response.json());
+  fetch(`${API}/${index + 118}`).then((response) => response.json());
 
-const fetchPokemonsPromises = () => Array(15).fill("").map(fetchData);
+const fetchPokemonsPromises = () => Array(20).fill("").map(fetchData);
 
 const getAllPokemons = async () => {
   const allPokemons = await Promise.all(fetchPokemonsPromises());
