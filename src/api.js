@@ -1,9 +1,11 @@
 const BASE_URL = "https://pokeapi.co/api/v2";
 
 const fetchData = (_, index) =>
-  fetch(`${BASE_URL}/pokemon/${index + 1}`).then((response) => response.json());
+  fetch(`${BASE_URL}/pokemon/${index + 128}`).then((response) =>
+    response.json()
+  );
 
-const fetchPokemonsPromises = () => Array(10).fill("").map(fetchData);
+const fetchPokemonsPromises = () => Array(15).fill("").map(fetchData);
 
 const getAllPokemons = async () => {
   const allPokemons = await Promise.all(fetchPokemonsPromises());

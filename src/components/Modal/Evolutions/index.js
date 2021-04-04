@@ -11,9 +11,10 @@ import Chevron from "../../Svg/Chevron";
 
 const Evolutions = ({ pokemonId, color }) => {
   const [evoChains, setEvoChains] = useState([]);
-  const [pokeImgId, setPokeImgId] = useState([]);
+  const [pokemonImage, setPokemonImage] = useState([]);
   const [slideActive, setSlideActive] = useState(0);
   const [positionSlide, setPositionSlide] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const contentRef = useRef();
   const { pokemons } = usePokemons();
@@ -41,48 +42,68 @@ const Evolutions = ({ pokemonId, color }) => {
 
   useEffect(() => {
     const evolutionChain = async () => {
-      const data = await getEvolutionChainsById(pokemonId);
-      setEvoChains(data);
+      try {
+        setLoading(true);
+        const data = await getEvolutionChainsById(pokemonId);
+        if (!data.length)
+          throw new Error("Não há dados das cadeias de evolução deste pokemon");
+        setEvoChains(data);
+      } catch (e) {
+        console.log(e.message);
+      } finally {
+        setLoading(false);
+      }
     };
     evolutionChain();
   }, [setEvoChains, pokemonId]);
 
   useEffect(() => {
     const getPokemonID = async () => {
-      const pokemonId = evoChains.map(async (chain) => {
-        const pokemonFiltered = pokemons.filter(
-          (pokemon) => pokemon.name === chain.species_name
-        );
+      if (evoChains.length) {
+        try {
+          setLoading(true);
+          const getEachId = async (chain) => {
+            const pokemonFiltered = pokemons.filter(
+              (pokemon) => pokemon.name === chain.species_name
+            );
 
-        if (!pokemonFiltered.length) {
-          const pokemonData = await getPokemonByNameOrId(chain.species_name);
-          pokemonFiltered.push(pokemonData);
+            if (!pokemonFiltered.length) {
+              const pokemonData = await getPokemonByNameOrId(
+                chain.species_name
+              );
+              pokemonFiltered.push(pokemonData);
+            }
+
+            return pokemonFiltered[0].id;
+          };
+
+          const allPromisesId = evoChains.map(getEachId);
+
+          const allPokemonsID = await Promise.all(allPromisesId);
+          setPokemonImage(allPokemonsID);
+        } catch (e) {
+          console.log(e);
+        } finally {
+          setLoading(false);
         }
-
-        return pokemonFiltered[0].id;
-      });
-
-      const allPromisesPokemon = await Promise.all(pokemonId);
-      setPokeImgId(allPromisesPokemon);
+      }
     };
     getPokemonID();
   }, [evoChains, pokemons]);
 
-  if (evoChains.length <= 1)
-    return (
-      <div className={styles.evoContainer}>
-        <p>Este pokemon não possui evoluções 😔</p>
-      </div>
-    );
   return (
     <div className={styles.evoContainer}>
-      {evoChains.length <= 3 ? (
+      {loading && <p>Carregando</p>}
+
+      {!loading && evoChains.length <= 1 ? (
+        <p>Este pokemon não possui evoluções 😔</p>
+      ) : !loading && evoChains.length <= 3 ? (
         <ul className={styles.evolutionList}>
           {evoChains.map((poke, index) => (
             <li key={poke.species_name} className={styles.evolutionItem}>
               <div className={styles.evolutionBoxImg}>
                 <img
-                  src={getPokemonImageById(pokeImgId[index])}
+                  src={getPokemonImageById(pokemonImage[index])}
                   alt={poke.species_name}
                 />
               </div>
@@ -103,7 +124,7 @@ const Evolutions = ({ pokemonId, color }) => {
               .map((poke, index) => (
                 <div key={poke.species_name}>
                   <img
-                    src={getPokemonImageById(pokeImgId[index])}
+                    src={getPokemonImageById(pokemonImage[index])}
                     alt={poke.species_name}
                   />
                   <h5>{poke.species_name}</h5>
@@ -122,7 +143,7 @@ const Evolutions = ({ pokemonId, color }) => {
                 .map((poke, index) => (
                   <div key={poke.species_name} className={styles.item}>
                     <img
-                      src={getPokemonImageById(pokeImgId[index + 1])}
+                      src={getPokemonImageById(pokemonImage[index + 1])}
                       alt={poke.species_name}
                     />
                     <h5>{poke.species_name}</h5>
