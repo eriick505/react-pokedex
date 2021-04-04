@@ -1,9 +1,9 @@
-const API = "https://pokeapi.co/api/v2/pokemon";
+const BASE_URL = "https://pokeapi.co/api/v2";
 
 const fetchData = (_, index) =>
-  fetch(`${API}/${index + 1}`).then((response) => response.json());
+  fetch(`${BASE_URL}/pokemon/${index + 1}`).then((response) => response.json());
 
-const fetchPokemonsPromises = () => Array(25).fill("").map(fetchData);
+const fetchPokemonsPromises = () => Array(10).fill("").map(fetchData);
 
 const getAllPokemons = async () => {
   const allPokemons = await Promise.all(fetchPokemonsPromises());
@@ -11,9 +11,7 @@ const getAllPokemons = async () => {
 };
 
 const getByIdPokemonSpecie = async (id) => {
-  const response = await fetch(
-    `https://pokeapi.co/api/v2/pokemon-species/${id}`
-  );
+  const response = await fetch(`${BASE_URL}/pokemon-species/${id}`);
   return await response.json();
 };
 
@@ -75,9 +73,18 @@ const getEvolutionChainsById = async (id) => {
 
 const getPokemonByNameOrId = async (nameOrId) => {
   if (nameOrId) {
-    const response = await fetch(`${API}/${nameOrId}`);
+    const response = await fetch(`${BASE_URL}/pokemon/${nameOrId}`);
     return await response.json();
   }
 };
 
-export { API, getAllPokemons, getEvolutionChainsById, getPokemonByNameOrId };
+const getPokemonImageById = (id) =>
+  `https://pokeres.bastionbot.org/images/pokemon/${id}.png`;
+
+export {
+  BASE_URL,
+  getAllPokemons,
+  getEvolutionChainsById,
+  getPokemonByNameOrId,
+  getPokemonImageById,
+};

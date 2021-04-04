@@ -7,15 +7,16 @@ import NavTabs from "../NavTabs";
 import StatsInfo from "./StatsInfo";
 import Moves from "./Moves";
 import Evolutions from "./Evolutions";
+import { getPokemonImageById } from "../../api";
 
-const Modal = ({ modalIsOpen, hideModal, pokemon }) => {
-  const showHideModal = modalIsOpen ? "modal " : "";
+const Modal = ({ pokemon, hideModal }) => {
   const { id, name, stats, moves } = pokemon;
   const typesInfo = pokemonTypesAsArray(pokemon);
-  const pokemonImg = `https://pokeres.bastionbot.org/images/pokemon/${id}.png`;
+
+  const pokemonImg = getPokemonImageById(id);
 
   return (
-    <div className={showHideModal}>
+    <div className="modal">
       <div className={"modal__box animateSlideDown " + typesInfo[0]}>
         <button className="modal__close" onClick={() => hideModal()}>
           x

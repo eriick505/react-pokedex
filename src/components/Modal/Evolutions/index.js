@@ -2,7 +2,11 @@ import React, { useEffect, useState, useRef } from "react";
 
 import styles from "./evolutions.module.css";
 import { usePokemons } from "../../../Context/Pokedex";
-import { getEvolutionChainsById, getPokemonByNameOrId } from "../../../api";
+import {
+  getEvolutionChainsById,
+  getPokemonByNameOrId,
+  getPokemonImageById,
+} from "../../../api";
 import Chevron from "../../Svg/Chevron";
 
 const Evolutions = ({ pokemonId, color }) => {
@@ -13,13 +17,6 @@ const Evolutions = ({ pokemonId, color }) => {
 
   const contentRef = useRef();
   const { pokemons } = usePokemons();
-
-  useEffect(() => {
-    if (contentRef.current) {
-      const { width } = contentRef.current.getBoundingClientRect();
-      setPositionSlide(-(width * slideActive));
-    }
-  }, [slideActive]);
 
   function slidePrev() {
     const isActiveGreaterThanZero = slideActive > 0;
@@ -34,6 +31,13 @@ const Evolutions = ({ pokemonId, color }) => {
       if (isActiveMinorThanTotalItems) setSlideActive(slideActive + 1);
     }
   }
+
+  useEffect(() => {
+    if (contentRef.current) {
+      const { width } = contentRef.current.getBoundingClientRect();
+      setPositionSlide(-(width * slideActive));
+    }
+  }, [slideActive]);
 
   useEffect(() => {
     const evolutionChain = async () => {
@@ -64,9 +68,6 @@ const Evolutions = ({ pokemonId, color }) => {
     getPokemonID();
   }, [evoChains, pokemons]);
 
-  const imgUrl = (id) =>
-    `https://pokeres.bastionbot.org/images/pokemon/${id}.png`;
-
   if (evoChains.length <= 1)
     return (
       <div className={styles.evoContainer}>
@@ -80,7 +81,10 @@ const Evolutions = ({ pokemonId, color }) => {
           {evoChains.map((poke, index) => (
             <li key={poke.species_name} className={styles.evolutionItem}>
               <div className={styles.evolutionBoxImg}>
-                <img src={imgUrl(pokeImgId[index])} alt={poke.species_name} />
+                <img
+                  src={getPokemonImageById(pokeImgId[index])}
+                  alt={poke.species_name}
+                />
               </div>
               <h5>{poke.species_name}</h5>
               {poke.min_level && (
@@ -98,7 +102,10 @@ const Evolutions = ({ pokemonId, color }) => {
               .filter((_, index) => index === 0)
               .map((poke, index) => (
                 <div key={poke.species_name}>
-                  <img src={imgUrl(pokeImgId[index])} alt={poke.species_name} />
+                  <img
+                    src={getPokemonImageById(pokeImgId[index])}
+                    alt={poke.species_name}
+                  />
                   <h5>{poke.species_name}</h5>
                 </div>
               ))}
@@ -115,7 +122,7 @@ const Evolutions = ({ pokemonId, color }) => {
                 .map((poke, index) => (
                   <div key={poke.species_name} className={styles.item}>
                     <img
-                      src={imgUrl(pokeImgId[index + 1])}
+                      src={getPokemonImageById(pokeImgId[index + 1])}
                       alt={poke.species_name}
                     />
                     <h5>{poke.species_name}</h5>

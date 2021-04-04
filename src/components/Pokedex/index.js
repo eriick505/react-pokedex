@@ -29,13 +29,7 @@ export default function Pokedex({ pokemonData }) {
         ))}
       </ul>
 
-      {show && (
-        <Modal
-          modalIsOpen={show}
-          hideModal={toggleModal}
-          pokemon={pokemonClicked}
-        />
-      )}
+      {show && <Modal hideModal={toggleModal} pokemon={pokemonClicked} />}
     </div>
   );
 }

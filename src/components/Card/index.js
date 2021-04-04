@@ -1,4 +1,5 @@
 import React from "react";
+import { getPokemonImageById } from "../../api";
 import { pokemonTypesAsArray } from "../../utils";
 import "./card.css";
 
@@ -17,9 +18,7 @@ const Card = ({ pokemon, showModal, getPokemon }) => {
     (async () => {
       try {
         setLoading(true);
-        const response = await fetch(
-          `https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`
-        );
+        const response = await fetch(getPokemonImageById(pokemon.id));
         if (!response.ok) throw new Error("Imagem não carregada");
         setImage(response.url);
       } catch (e) {
