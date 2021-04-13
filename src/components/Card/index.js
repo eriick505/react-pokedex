@@ -1,54 +1,51 @@
-import React from "react";
-import { getPokemonImageById } from "../../api";
-import { pokemonTypesAsArray } from "../../utils";
-import "./card.css";
+import React from 'react';
+import { pokemonTypesAsArray, getPokemonImageById } from '../../utils';
+import Loading from '../Helpers/Loading';
+import Error from '../Helpers/Error';
+import useFetch from '../../Hooks/useFetch';
+import { card, content, identity, types, thumb } from './Card.module.css';
 
-const Card = ({ pokemon, showModal, getPokemon }) => {
-  const [loading, setLoading] = React.useState(false);
-  const [image, setImage] = React.useState(null);
+function Card({ pokemon, setPokemonModal }) {
+  const { data, loading, error, request } = useFetch();
 
   function handleClick() {
-    showModal();
-    getPokemon(pokemon);
+    setPokemonModal(data);
   }
 
-  const types = pokemonTypesAsArray(pokemon);
-
   React.useEffect(() => {
-    (async () => {
-      try {
-        setLoading(true);
-        const response = await fetch(getPokemonImageById(pokemon.id));
-        if (!response.ok) throw new Error("Imagem não carregada");
-        setImage(response.url);
-      } catch (e) {
-        console.log(e.message);
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, [pokemon.id]);
+    function getPokemon() {
+      request(pokemon.url);
+    }
+    getPokemon();
+  }, [request, pokemon.url]);
 
-  return (
-    <li className={"card " + types[0]} onClick={() => handleClick()}>
-      <div className="content">
-        <h2>{pokemon.name}</h2>
-        <ul className="types">
-          {types.map((type) => (
-            <li key={type}>{type}</li>
-          ))}
-        </ul>
-        <span className="id">#{pokemon.id}</span>
-      </div>
-      <div className="thumb">
-        {loading ? (
-          "carregando"
-        ) : (
-          <img className="card-image" src={image} alt={pokemon.name} />
-        )}
-      </div>
-    </li>
-  );
-};
+  if (error) return <Error error={error} />;
+  if (loading) return <Loading />;
+  if (data) {
+    const { name, id } = data;
+    const typeList = pokemonTypesAsArray(data);
+
+    return (
+      <li onClick={handleClick} className={`${card} ${typeList[0]}`}>
+        <div className={content}>
+          <h2>{name}</h2>
+          <ul className={types}>
+            {typeList.map(type => (
+              <li key={type}>{type}</li>
+            ))}
+          </ul>
+          <span className={identity}>#{id}</span>
+        </div>
+        <div className={thumb}>
+          <img
+            className="card-image"
+            src={getPokemonImageById(id)}
+            alt={name}
+          />
+        </div>
+      </li>
+    );
+  } else return null;
+}
 
 export default Card;

@@ -40,7 +40,7 @@
 }
 
 .evolutionItem:not(:last-child)::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 72%;
   top: 25px;
@@ -48,7 +48,7 @@
   margin-right: 10px;
   width: 40%;
   height: 48px;
-  background: url("../../../assets/img/arrow-right.png");
+  background: url('../../../assets/img/arrow-right.png');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -98,6 +98,9 @@
 .multipleEvolutions {
   display: grid;
   grid-template-columns: 50% 50%;
+  color: #333;
+  text-align: center;
+  text-transform: capitalize;
 }
 
 .multipleEvolutions h5 {
@@ -109,7 +112,7 @@
 }
 
 .mainPokemon::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 72%;
   top: 25px;
@@ -117,7 +120,7 @@
   margin-right: 10px;
   width: 40%;
   height: 48px;
-  background: url("../../../assets/img/arrow-right.png");
+  background: url('../../../assets/img/arrow-right.png');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -128,47 +131,13 @@
   max-width: 64%;
 }
 
-/* SLIDE  */
-.slideContainer {
-  overflow: hidden;
-}
-
-.slideContainer .content {
-  display: flex;
-  transition: transform 0.2s ease-in-out;
-}
-
-.slideContainer .item {
+.multipleEvolutions .item {
   width: 80%;
   flex-shrink: 0;
   margin: 0 10%;
 }
 
-.slideContainer .item img {
+.multipleEvolutions .item img {
   max-width: 80%;
   height: auto;
-}
-
-.slideControl {
-  display: flex;
-  justify-content: space-between;
-  margin: 1rem auto;
-  width: 80%;
-  position: relative;
-}
-
-.slideControl button {
-  position: absolute;
-  top: -30px;
-  background: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.slideContainer button:first-child {
-  left: 0;
-}
-
-.slideContainer button:last-child {
-  right: 0;
 }

@@ -1,23 +1,23 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import "./navtabs.css";
+import { navMenu, active, tabContent } from './NavTabs.module.css';
 
 const NavTabs = ({ children }) => {
-  const [active, setActive] = useState(children[0].props.label);
+  const [tabActive, setTabActive] = useState(children[0].props.label);
 
-  const handleClick = (label) => {
-    setActive(label);
+  const handleClick = label => {
+    setTabActive(label);
   };
 
   return (
-    <div className="navTabs">
-      <ul className="navMenu">
-        {children.map((child) => {
+    <div>
+      <ul className={navMenu}>
+        {children.map(child => {
           const { label } = child.props;
           return (
             <li
               key={label}
-              className={label === active ? "active" : ""}
+              className={`${label === tabActive ? active : ''}`}
               onClick={() => handleClick(label)}
             >
               {label}
@@ -25,20 +25,11 @@ const NavTabs = ({ children }) => {
           );
         })}
       </ul>
-      <div className="tabContent">
-        {children.map((one) => {
+      <div className={tabContent}>
+        {children.filter(one => {
           const { label } = one.props;
 
-          return (
-            <div
-              key={label}
-              className={
-                "item " + (label === active ? "active animateSlideRight" : "")
-              }
-            >
-              {one}
-            </div>
-          );
+          return label === tabActive ? one : '';
         })}
       </div>
     </div>

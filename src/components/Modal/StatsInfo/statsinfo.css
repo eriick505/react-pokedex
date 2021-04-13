@@ -6,63 +6,63 @@
 **
 **/
 .baseStats {
-	width: 257px;
-	margin-left: auto;
-	margin: auto;
+  width: 257px;
+  margin-left: auto;
+  margin: auto;
 }
 
 .statItem:not(:last-child) {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
-.statItem .info {
-	color: #111;
-	display: flex;
-	font-size: 15px;
-	font-weight: 600;
-	justify-content: space-between;
-	margin-bottom: 4px;
-	text-transform: capitalize;
+.statItem .infoLabel {
+  color: #111;
+  display: flex;
+  font-size: 15px;
+  font-weight: 600;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  text-transform: capitalize;
 }
 
 .statItem .progress {
-	background-color: rgb(241, 241, 241);
-	height: 5px;
+  background-color: rgb(241, 241, 241);
+  height: 5px;
 }
 
 .bar {
-	display: block;
-	height: 100%;
+  display: block;
+  height: 100%;
 }
 
 .total {
-	display: flex;
-	justify-content: space-between;
-	margin-top: 10px;
-	color: #111;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  color: #111;
 }
 
 /* STATS NAME */
 .hp {
-	background-color: #a7db8d;
+  background-color: #a7db8d;
 }
 
 .attack {
-	background-color: #ff5959;
+  background-color: #ff5959;
 }
 
 .defense {
-	background-color: #9db7f5;
+  background-color: #9db7f5;
 }
 
 .special-attack {
-	background-color: #f39c12;
+  background-color: #f39c12;
 }
 
 .special-defense {
-	background-color: #8395a7;
+  background-color: #8395a7;
 }
 
 .speed {
-	background-color: #9b59b6;
+  background-color: #9b59b6;
 }

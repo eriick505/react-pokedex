@@ -1,17 +1,17 @@
-import React from 'react'
+import React from 'react';
 
-import './moves.css'
+import { movesList } from './Moves.module.css';
 
 const Moves = ({ moves, color }) => {
   return (
-    <ul className="movesList">
+    <ul className={`${movesList} animateSlideRight`}>
       {moves.map(item => (
         <li key={item.move.name} className={color}>
           {item.move.name}
         </li>
       ))}
     </ul>
-  )
-}
+  );
+};
 
-export default Moves
+export default Moves;
