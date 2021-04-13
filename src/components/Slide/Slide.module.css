@@ -1,0 +1,33 @@
+/* SLIDE  */
+.slideContainer {
+  overflow: hidden;
+}
+
+.slideContainer .content {
+  display: flex;
+  transition: transform 0.2s ease-in-out;
+}
+
+.slideControl {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem auto;
+  width: 80%;
+  position: relative;
+}
+
+.slideControl button {
+  position: absolute;
+  top: -30px;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.slideContainer button:first-child {
+  left: 0;
+}
+
+.slideContainer button:last-child {
+  right: 0;
+}
