@@ -1,0 +1,19 @@
+.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.534);
+  color: #111;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px 15px;
+}
+
+@media(min-width: 769px) {
+  .footer {
+    flex-direction: row;
+  }
+}
+
+.footer a {
+  color: #306cb4;
+  text-decoration: none;
+}
