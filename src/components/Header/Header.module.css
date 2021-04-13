@@ -1,0 +1,28 @@
+.header {
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.534);
+  display: flex;
+  justify-content: center;
+  padding: 8px 15px;
+  transition: all 0.2s ease-in-out;
+  flex-direction: column;
+  text-align: center;
+}
+
+@media (min-width: 1025px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.header .logo img {
+  max-width: 40%;
+  height: auto;
+}
+
+.header .searchContainer {
+  width: 100%;
+  max-width: 400px;
+}

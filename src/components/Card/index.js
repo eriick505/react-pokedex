@@ -1,32 +1,51 @@
-import React from "react";
-import { pokemonTypesAsArray } from "../../utils";
-import "./card.css";
+import React from 'react';
+import { pokemonTypesAsArray, getPokemonImageById } from '../../utils';
+import Loading from '../Helpers/Loading';
+import Error from '../Helpers/Error';
+import useFetch from '../../Hooks/useFetch';
+import { card, content, identity, types, thumb } from './Card.module.css';
 
-const Card = ({ pokemon, showModal, getPokemon }) => {
-  const handleCLick = () => {
-    showModal();
-    getPokemon(pokemon);
-  };
+function Card({ pokemon, setPokemonModal }) {
+  const { data, loading, error, request } = useFetch();
 
-  const types = pokemonTypesAsArray(pokemon);
-  const imgUrl = `https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`;
+  function handleClick() {
+    setPokemonModal(data);
+  }
 
-  return (
-    <li className={"card " + types[0]} onClick={() => handleCLick()}>
-      <div className="content">
-        <h2>{pokemon.name}</h2>
-        <ul className="types">
-          {types.map((type) => (
-            <li key={type}>{type}</li>
-          ))}
-        </ul>
-        <span className="id">#{pokemon.id}</span>
-      </div>
-      <div className="thumb">
-        <img className="card-image" src={imgUrl} alt={pokemon.name} />
-      </div>
-    </li>
-  );
-};
+  React.useEffect(() => {
+    function getPokemon() {
+      request(pokemon.url);
+    }
+    getPokemon();
+  }, [request, pokemon.url]);
+
+  if (error) return <Error error={error} />;
+  if (loading) return <Loading />;
+  if (data) {
+    const { name, id } = data;
+    const typeList = pokemonTypesAsArray(data);
+
+    return (
+      <li onClick={handleClick} className={`${card} ${typeList[0]}`}>
+        <div className={content}>
+          <h2>{name}</h2>
+          <ul className={types}>
+            {typeList.map(type => (
+              <li key={type}>{type}</li>
+            ))}
+          </ul>
+          <span className={identity}>#{id}</span>
+        </div>
+        <div className={thumb}>
+          <img
+            className="card-image"
+            src={getPokemonImageById(id)}
+            alt={name}
+          />
+        </div>
+      </li>
+    );
+  } else return null;
+}
 
 export default Card;

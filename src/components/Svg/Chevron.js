@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function Chevron({ left, width, height }) {
   return (
@@ -11,9 +11,10 @@ function Chevron({ left, width, height }) {
       y="0px"
       viewBox="0 0 492.004 492.004"
       style={{
+        fill: '#3b5ea9',
         width: `${width}px`,
         height: `${height}px`,
-        transform: left ? "rotate(180deg)" : "rotate(0)",
+        transform: left ? 'rotate(180deg)' : 'rotate(0)',
       }}
       xmlSpace="preserve"
     >

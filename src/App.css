@@ -87,3 +87,21 @@ body {
 .dark {
   background-color: #252525;
 }
+
+.animateSlideRight {
+  animation-name: slideRight;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+}
+
+/***** ANIMATIONS *****/
+
+@keyframes slideRight {
+  from {
+    transform: translateX(-75vh);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
