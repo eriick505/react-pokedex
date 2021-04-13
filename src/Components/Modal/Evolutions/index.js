@@ -5,10 +5,7 @@ import {
   GET_EVOLUTION_CHAINS_BY_SPECIE_DATA,
   GET_POKEMON,
 } from '../../../Api';
-import {
-  getNecessaryDataFromEvoChains,
-  getPokemonImageById,
-} from '../../../utils';
+import { getAllEvolutions, getPokemonImageById } from '../../../utils';
 import Slide from '../../Slide';
 import Loading from '../../Helpers/Loading';
 import Error from '../../Helpers/Error';
@@ -40,7 +37,7 @@ const Evolutions = ({ pokemonId, color }) => {
         GET_EVOLUTION_CHAINS_BY_SPECIE_DATA(specieData)
       );
 
-      const chainsData = getNecessaryDataFromEvoChains(evoData);
+      const chainsData = getAllEvolutions(evoData.chain);
       setEvolutions(chainsData);
     }
     getEvolution();
