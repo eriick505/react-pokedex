@@ -14,6 +14,7 @@ import {
   modal__content,
   overlay,
   modal__header,
+  modalImg,
   pokeId,
   typesPill,
   modal__body,
@@ -42,17 +43,19 @@ function Modal({ pokemonModal: pokemon, setPokemonModal }) {
 
         <div className={modal__content}>
           <div className={overlay}></div>
+
           <div className={modal__header}>
             <h2>{name}</h2>
             <span className={pokeId}>#{id}</span>
             <ul className={typesPill}>
               {types.map((type, index) => (
                 <li key={`${type}-${index}`} className={type}>
+                  <img src={`img/types/${type}.png`} alt="type" />
                   {type}
                 </li>
               ))}
             </ul>
-            <img src={pokemonImg} alt={name} />
+            <img src={pokemonImg} alt={name} className={modalImg} />
           </div>
 
           <div className={modal__body}>
