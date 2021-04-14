@@ -31,7 +31,9 @@ function Card({ pokemon, setPokemonModal }) {
           <h2>{name}</h2>
           <ul className={types}>
             {typeList.map(type => (
-              <li key={type}>{type}</li>
+              <li key={type} className={type}>
+                {type}
+              </li>
             ))}
           </ul>
           <span className={identity}>#{id}</span>

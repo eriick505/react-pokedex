@@ -33,13 +33,13 @@
 }
 
 .content .types li {
-  background-color: #f5f5f54f;
   border-radius: 24px;
   color: #fff;
   display: inline-block;
   padding: 4px 8px;
   width: fit-content;
-  box-shadow: 2px 2px 7px 1px rgba(3, 3, 3, 0.04);
+  box-shadow: 2px 2px 4px 1px rgba(3, 3, 3, 0.1);
+  filter: brightness(1.05);
 }
 
 .content .types li:first-child {
