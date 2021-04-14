@@ -45,6 +45,7 @@
   .modal__box {
     height: 100%;
     overflow-y: auto;
+    scrollbar-width: thin;
   }
 }
 
@@ -112,12 +113,12 @@
 }
 
 .modal__header .typesPill li {
-  background-color: #fff;
   border-radius: 18px;
-  box-shadow: 2px 2px 6px 0 rgba(3, 3, 3, 0.12);
-  color: #111;
+  box-shadow: 2px 2px 6px 0 rgba(3, 3, 3, 0.17);
+  color: #fff;
   font-size: 14px;
   padding: 2px 8px;
+  filter: brightness(1.05);
 }
 
 .modal__header .typesPill li:not(:last-child) {

@@ -47,7 +47,9 @@ function Modal({ pokemonModal: pokemon, setPokemonModal }) {
             <span className={pokeId}>#{id}</span>
             <ul className={typesPill}>
               {types.map((type, index) => (
-                <li key={`${type}-${index}`}>{type}</li>
+                <li key={`${type}-${index}`} className={type}>
+                  {type}
+                </li>
               ))}
             </ul>
             <img src={pokemonImg} alt={name} />
