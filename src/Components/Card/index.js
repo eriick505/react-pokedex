@@ -32,6 +32,7 @@ function Card({ pokemon, setPokemonModal }) {
           <ul className={types}>
             {typeList.map(type => (
               <li key={type} className={type}>
+                <img src={`img/types/${type}.png`} alt="type" />
                 {type}
               </li>
             ))}
