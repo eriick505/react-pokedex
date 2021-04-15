@@ -3,11 +3,63 @@
   max-width: 440px;
 }
 
-.searchForm input {
+.formGroup {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 50px;
+  background-color: #fff;
   border-radius: 20px;
   border: 3px solid #306cb4;
+}
+
+.formGroup input {
   font-size: 16px;
-  min-height: 40px;
-  padding: 9px 18px;
+  border: none;
+  padding: 0 16px;
+  border-radius: 20px;
   width: 100%;
+  min-height: 40px;
+}
+
+.formGroup button {
+  cursor: pointer;
+  background-color: #fff;
+  border: none;
+  border-radius: 20px;
+}
+
+.formGroup button svg {
+  width: 20px;
+  height: 20px;
+  fill: #306cb4;
+  transition: all 0.2s ease-in-out;
+}
+
+.formGroup button:hover svg {
+  transform: rotate(75deg);
+}
+
+.formGroup input:focus {
+  outline: none;
+}
+
+.formGroup label {
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  color: #000;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+  pointer-events: none;
+  border-radius: 20px;
+}
+
+.formGroup input:focus + label,
+.formGroup input:not(:placeholder-shown) + label {
+  top: -12px;
+  left: 12px;
+  background-color: #fff;
+  font-size: 12px;
+  padding: 1px 12px;
+  border-top: 3px solid #306cb4;
 }

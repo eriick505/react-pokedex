@@ -1,20 +1,32 @@
 import React from 'react';
-import { searchForm } from './SearchBar.module.css';
+import Search from '../Svg/Search';
+import { searchForm, formGroup } from './SearchBar.module.css';
 
 export default function SearchBar() {
-  const handleChange = e => {
-    const inputValue = e.target.value;
-    console.log(inputValue);
-  };
+  const [search, setSearch] = React.useState('');
+
+  function handleChange({ target }) {
+    setSearch(target.value);
+    if (target.value.length === 0) {
+      console.log('vazio');
+    }
+  }
 
   return (
     <div className={searchForm}>
-      <input
-        type="text"
-        id="search"
-        placeholder="Buscar Pokemon"
-        onChange={handleChange}
-      />
+      <div className={formGroup}>
+        <input
+          type="text"
+          id="search"
+          placeholder=""
+          value={search}
+          onChange={handleChange}
+        />
+        <label>Buscar Pokemon</label>
+        <button>
+          <Search />
+        </button>
+      </div>
     </div>
   );
 }
