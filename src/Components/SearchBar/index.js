@@ -1,14 +1,27 @@
 import React from 'react';
 import Search from '../Svg/Search';
+import { GET_POKEMON } from '../../Api';
+import useFetch from '../../Hooks/useFetch';
 import { searchForm, formGroup } from './SearchBar.module.css';
 
-export default function SearchBar() {
-  const [search, setSearch] = React.useState('');
+export default function SearchBar({ setSearchPokemon, setFoundPokemon }) {
+  const [searchInput, setSearchInput] = React.useState('');
+  const { request, error } = useFetch();
 
-  function handleChange({ target }) {
-    setSearch(target.value);
-    if (target.value.length === 0) {
-      console.log('vazio');
+  React.useEffect(() => {
+    if (searchInput.length === 0) {
+      setSearchPokemon(null);
+      setFoundPokemon(false);
+    }
+  }, [searchInput, setSearchPokemon, setFoundPokemon]);
+
+  async function handleSearch() {
+    if (searchInput.length) {
+      const { response, json } = await request(GET_POKEMON(searchInput));
+      if (response.ok) {
+        setSearchPokemon(json);
+        setFoundPokemon(true);
+      }
     }
   }
 
@@ -19,14 +32,15 @@ export default function SearchBar() {
           type="text"
           id="search"
           placeholder=""
-          value={search}
-          onChange={handleChange}
+          value={searchInput}
+          onChange={({ target }) => setSearchInput(target.value)}
         />
         <label>Buscar Pokemon</label>
-        <button>
+        <button onClick={handleSearch}>
           <Search />
         </button>
       </div>
+      {error && <p>erro ao buscar pokemon</p>}
     </div>
   );
 }
