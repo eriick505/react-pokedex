@@ -1,0 +1,14 @@
+.container {
+  max-width: 650px;
+  margin: 15px auto;
+}
+
+.title {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.title span {
+  color: #306cb4;
+  text-transform: capitalize;
+}
