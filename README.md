@@ -35,7 +35,7 @@
 - [x] Informações sobre o pokemon - Todos os movimentos
 - [x] Informações sobre o pokemon - Evoluções
 - [x] Transformar em responsivo
-- [ ] Filtrar pokemon
+- [x] Buscar pokemon
 - [ ] Favoritar pokemon
 - [ ] Refatorar projeto
 

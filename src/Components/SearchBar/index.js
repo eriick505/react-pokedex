@@ -1,20 +1,48 @@
 import React from 'react';
-import { searchForm } from './SearchBar.module.css';
+import Search from '../Svg/Search';
+import { GET_POKEMON } from '../../Api';
+import useFetch from '../../Hooks/useFetch';
+import { searchForm, formGroup } from './SearchBar.module.css';
+import { SearchContext } from '../../Context/SearchPokemon';
 
 export default function SearchBar() {
-  const handleChange = e => {
-    const inputValue = e.target.value;
-    console.log(inputValue);
-  };
+  const [searchInput, setSearchInput] = React.useState('');
+  const { setSearchPokemon, setFoundPokemon } = React.useContext(SearchContext);
+  const { request, error } = useFetch();
+
+  React.useEffect(() => {
+    if (searchInput.length === 0) {
+      setSearchPokemon(null);
+      setFoundPokemon(false);
+    }
+  }, [searchInput, setSearchPokemon, setFoundPokemon]);
+
+  async function handleSearch() {
+    if (searchInput.length) {
+      const { response, json } = await request(GET_POKEMON(searchInput));
+      if (response.ok) {
+        setSearchPokemon(json);
+        setFoundPokemon(true);
+      }
+    }
+  }
 
   return (
     <div className={searchForm}>
-      <input
-        type="text"
-        id="search"
-        placeholder="Buscar Pokemon"
-        onChange={handleChange}
-      />
+      <div className={formGroup}>
+        <input
+          type="text"
+          id="search"
+          placeholder=""
+          value={searchInput}
+          onChange={({ target }) => setSearchInput(target.value)}
+        />
+        <label>Buscar Pokemon</label>
+        <button onClick={handleSearch}>
+          <Search />
+        </button>
+      </div>
+      {error && <p>erro ao buscar pokemon</p>}
     </div>
   );
 }

@@ -1,0 +1,17 @@
+.container {
+  max-width: 650px;
+  margin: 40px auto 0;
+  min-height: 81vh;
+  padding: 0 10px;
+}
+
+.title {
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.title span {
+  color: #306cb4;
+  text-transform: capitalize;
+}
