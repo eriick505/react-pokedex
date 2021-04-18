@@ -1,6 +1,7 @@
 .container {
   padding: 20px 10px;
   margin: 20px auto;
+  min-height: 81vh;
 }
 
 @media (min-width: 768px) {
