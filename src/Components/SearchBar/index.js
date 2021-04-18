@@ -3,9 +3,11 @@ import Search from '../Svg/Search';
 import { GET_POKEMON } from '../../Api';
 import useFetch from '../../Hooks/useFetch';
 import { searchForm, formGroup } from './SearchBar.module.css';
+import { SearchContext } from '../../Context/SearchPokemon';
 
-export default function SearchBar({ setSearchPokemon, setFoundPokemon }) {
+export default function SearchBar() {
   const [searchInput, setSearchInput] = React.useState('');
+  const { setSearchPokemon, setFoundPokemon } = React.useContext(SearchContext);
   const { request, error } = useFetch();
 
   React.useEffect(() => {
