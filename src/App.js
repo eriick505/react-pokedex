@@ -5,24 +5,18 @@ import Pokedex from './Components/Pokedex';
 import Modal from './Components/Modal';
 import './App.css';
 import SearchResult from './Components/SearchResult';
+import { SearchContext } from './Context/SearchPokemon';
 
 function App() {
   const [pokemonModal, setPokemonModal] = React.useState(null);
-  const [searchPokemon, setSearchPokemon] = React.useState(null);
-  const [foundPokemon, setFoundPokemon] = React.useState(false);
+  const { foundPokemon } = React.useContext(SearchContext);
 
   return (
     <>
-      <Header
-        setSearchPokemon={setSearchPokemon}
-        setFoundPokemon={setFoundPokemon}
-      />
+      <Header />
 
       {foundPokemon ? (
-        <SearchResult
-          pokemon={searchPokemon}
-          setPokemonModal={setPokemonModal}
-        />
+        <SearchResult setPokemonModal={setPokemonModal} />
       ) : (
         <Pokedex setPokemonModal={setPokemonModal} />
       )}
