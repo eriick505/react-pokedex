@@ -1,9 +1,12 @@
 .container {
   max-width: 650px;
-  margin: 15px auto;
+  margin: 40px auto 0;
+  min-height: 81vh;
+  padding: 0 10px;
 }
 
 .title {
+  margin-top: 0;
   margin-bottom: 20px;
   text-align: center;
 }
