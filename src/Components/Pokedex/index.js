@@ -53,12 +53,8 @@ function Pokedex({ setPokemonModal }) {
       <div className={container}>
         <ul className={pokedex}>
           {listPokemon.map(pokemon => (
-            <li>
-              <Card
-                key={pokemon.name}
-                pokemon={pokemon}
-                setPokemonModal={setPokemonModal}
-              />
+            <li key={pokemon.name}>
+              <Card pokemon={pokemon} setPokemonModal={setPokemonModal} />
             </li>
           ))}
         </ul>
