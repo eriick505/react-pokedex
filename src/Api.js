@@ -2,7 +2,7 @@ const BASE_URL = 'https://pokeapi.co/api/v2';
 
 const GET_POKEMON = pokemon => `${BASE_URL}/pokemon/${pokemon}`;
 
-const GET_POKEMONS_LIST = (limit = 80, offset = 0) =>
+const GET_POKEMONS_LIST = (limit = 10, offset = 0) =>
   `${BASE_URL}/pokemon?limit=${limit}&offset=${offset}`;
 
 const GET_POKEMON_SPECIES_BY_ID = id => `${BASE_URL}/pokemon-species/${id}`;
