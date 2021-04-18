@@ -17,7 +17,13 @@
   }
 }
 
-.header .logo img {
+@media (max-width: 480px) {
+  .logo {
+    margin-bottom: 16px;
+  }
+}
+
+.logo img {
   max-width: 40%;
   height: auto;
 }
